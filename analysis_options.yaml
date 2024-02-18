@@ -1,0 +1,24 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+     avoid_print: true
+     prefer_single_quotes: true
+     avoid_empty_else: true
+     avoid_relative_lib_imports: true
+     avoid_types_as_parameter_names: true
+     empty_statements: true
+     use_key_in_widget_constructors: true
+     valid_regexps: true
+     annotate_overrides: true
+     avoid_function_literals_in_foreach_calls: true
+     avoid_init_to_null: true
+     avoid_unnecessary_containers: true
+     camel_case_types: true
+     file_names: true
+     curly_braces_in_flow_control_structures: true
+     null_check_on_nullable_type_parameter: true
+     unnecessary_lambdas: true
+
+# Additional information about this file can be found at
+# https://dart.dev/guides/language/analysis-options
