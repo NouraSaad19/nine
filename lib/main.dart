@@ -23,11 +23,11 @@ class MyApp extends StatelessWidget {
           FocusManager.instance.primaryFocus?.unfocus();
         },
         child: GetMaterialApp(
-            title: 'App Name',
+            title: 'Nine',
             debugShowCheckedModeBanner: false,
             theme: ThemeApp.lightTheme,
             getPages: AppRoutes.routes,
-            initialRoute: Routes.navigationScreen),
+            initialRoute: Routes.authScreen),
       ),
     );
   }

@@ -16,7 +16,6 @@ class TextFieldWidget extends StatelessWidget {
   final int? maxLine, maxLength;
   final TextInputAction? textInputAction;
 
-
   const TextFieldWidget({
     required this.controller,
     this.validator,
@@ -27,15 +26,16 @@ class TextFieldWidget extends StatelessWidget {
     this.hintText,
     this.text,
     this.keyboardType,
-    Key? key,
+    super.key,
     this.autofillHints,
     this.inputFormatters,
     this.maxLine,
     this.maxLength,
     this.obscureText,
     this.label,
-    this.numCode, this.textInputAction,
-  }) : super(key: key);
+    this.numCode,
+    this.textInputAction,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,8 @@ class TextFieldWidget extends StatelessWidget {
           controller: controller,
           onChanged: onChanged,
           keyboardType: keyboardType,
-          cursorColor: Get.isDarkMode ? AppColor.whiteColor : AppColor.blackColor,
+          cursorColor:
+              Get.isDarkMode ? AppColor.whiteColor : AppColor.blackColor,
           maxLines: maxLine,
           validator: validator,
           decoration: InputDecoration(

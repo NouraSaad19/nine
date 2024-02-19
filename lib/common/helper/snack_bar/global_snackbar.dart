@@ -8,8 +8,8 @@ class GlobalSnackBar {
   const GlobalSnackBar();
 
   static warningSnackBar(
-      String message,
-      ) {
+    String message,
+  ) {
     Get.snackbar('', '',
         titleText: WarningSnackBar(
           message: message,
@@ -20,8 +20,8 @@ class GlobalSnackBar {
   }
 
   static errorSnackBar(
-      String message,
-      ) {
+    String message,
+  ) {
     Get.snackbar('', '',
         titleText: ErrorSnackBar(
           message: message,
@@ -32,8 +32,8 @@ class GlobalSnackBar {
   }
 
   static questionSnackBar(
-      String message,
-      ) {
+    String message,
+  ) {
     Get.snackbar('', '',
         titleText: QuestionSnackBar(
           message: message,
@@ -44,8 +44,8 @@ class GlobalSnackBar {
   }
 
   static successSnackBar(
-      String message,
-      ) {
+    String message,
+  ) {
     Get.snackbar('', '',
         titleText: SuccessSnackBar(
           message: message,

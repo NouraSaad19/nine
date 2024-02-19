@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class WarningSnackBar extends StatelessWidget {
   final String message;
 
-  const WarningSnackBar({Key? key, required this.message}) : super(key: key);
+  const WarningSnackBar({super.key, required this.message});
   @override
   Widget build(BuildContext context) {
     return Container();

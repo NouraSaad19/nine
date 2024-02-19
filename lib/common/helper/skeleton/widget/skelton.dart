@@ -9,11 +9,11 @@ class Skeleton extends StatelessWidget {
   final BorderRadiusGeometry? borderRadius;
 
   const Skeleton({
-    Key? key,
+    super.key,
     this.height = 20,
     this.width = 200,
     this.borderRadius,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
