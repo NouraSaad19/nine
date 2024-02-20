@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "971833192088",
+    "project_id": "nine-fdb2f",
+    "storage_bucket": "nine-fdb2f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971833192088:android:2e3f49e07eea546481eaed",
+        "android_client_info": {
+          "package_name": "com.example.flutter_template"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKUamG5CeYBY6JFyvphwUb0o8JJvUYXRE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
