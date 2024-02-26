@@ -14,7 +14,7 @@ class LoadingWidget extends StatelessWidget {
       child: Transform.scale(
         scale: 0.40,
         child: Image.asset(
-          AppImage.example,
+          AppImage.logoImage,
           fit: BoxFit.fill,
         ),
       ),
