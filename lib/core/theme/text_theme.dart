@@ -9,10 +9,7 @@ class CustomTextTheme {
 
     return TextTheme(
       headlineLarge: GoogleFonts.cairo(
-          color: AppColor.orangeColor,
-          fontSize: 20,
-          fontWeight: bold),
-
+          color: AppColor.orangeColor, fontSize: 20, fontWeight: bold),
       headlineMedium: GoogleFonts.cairo(
         color: AppColor.orangeColor,
         fontSize: 16,

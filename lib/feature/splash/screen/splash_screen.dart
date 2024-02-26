@@ -14,7 +14,7 @@ class SplashScreen extends GetView<SplashController> {
             height: size.height,
             width: size.width,
             child: Image.asset(
-              AppImage.splashScreen,
+              AppImage.logoImage,
               fit: BoxFit.fill,
             )));
   }
