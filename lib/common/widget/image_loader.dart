@@ -19,14 +19,14 @@ class ImageLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FadeInImage.assetNetwork(
-      placeholder:AppImage.example,
+      placeholder: AppImage.logoImage,
       placeholderFit: BoxFit.contain,
       height: height,
       width: width,
       image: image,
       fit: fit,
       imageErrorBuilder: (context, object, stackTrace) => Image.asset(
-        AppImage.example,
+        AppImage.logoImage,
         fit: BoxFit.contain,
       ),
     );
