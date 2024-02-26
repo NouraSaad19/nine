@@ -26,7 +26,7 @@ class Skeleton extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment(skeletonController.gradientPosition.value, 0),
             end: const Alignment(-1, 0),
-            colors:  [AppColor.greyColor.shade400, AppColor.greyColor.shade200, AppColor.greyColor.shade300],
+            colors:  [AppColor.tiffanyColor],
           ),
         ),
       );

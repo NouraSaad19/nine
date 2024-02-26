@@ -7,7 +7,7 @@ class AppBoxDecoration {
     borderRadius: BorderRadius.circular(12),
     boxShadow: [
       BoxShadow(
-          color: AppColor.blackColor.withOpacity(0.07), blurRadius: 5, spreadRadius: 1),
+          color: AppColor.greyTextColor.withOpacity(0.07), blurRadius: 5, spreadRadius: 1),
     ],
   );
 }

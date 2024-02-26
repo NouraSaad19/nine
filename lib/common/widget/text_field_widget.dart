@@ -67,7 +67,7 @@ class TextFieldWidget extends StatelessWidget {
           onChanged: onChanged,
           keyboardType: keyboardType,
           cursorColor:
-              Get.isDarkMode ? AppColor.whiteColor : AppColor.blackColor,
+              Get.isDarkMode ? AppColor.whiteColor : AppColor.greyTextColor,
           maxLines: maxLine,
           validator: validator,
           decoration: InputDecoration(
