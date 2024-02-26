@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../../core/constant/keys.dart';
-import '../../../core/route/route.dart';
 
 class SplashController extends GetxController {
   final _getStorage = GetStorage();

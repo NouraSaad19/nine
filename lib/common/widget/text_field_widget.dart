@@ -66,12 +66,13 @@ class TextFieldWidget extends StatelessWidget {
           controller: controller,
           onChanged: onChanged,
           keyboardType: keyboardType,
+          textAlign: TextAlign.end,
           cursorColor:
               Get.isDarkMode ? AppColor.whiteColor : AppColor.greyTextColor,
           maxLines: maxLine,
           validator: validator,
           decoration: InputDecoration(
-            hintStyle: textTheme.labelSmall,
+            hintStyle: textTheme.labelMedium,
             hintText: hintText,
             labelStyle: textTheme.headlineSmall,
             labelText: label,
