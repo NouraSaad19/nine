@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/common/widget/logo_widget.dart';
 import 'package:flutter_template/common/widget/text_field_widget.dart';
+import 'package:flutter_template/core/constant/validation.dart';
 import 'package:flutter_template/core/extension/spaceing_extentsion.dart';
+import 'package:flutter_template/core/route/route.dart';
 import 'package:flutter_template/core/theme/app_colors.dart';
 import 'package:flutter_template/feature/authentication/controller/auth_controller.dart';
 import 'package:get/get.dart';
-import '../../../core/route/route.dart';
 
 class SingUpScreen extends StatelessWidget {
-  const SingUpScreen({super.key});
+  SingUpScreen({super.key});
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class SingUpScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 32.0),
                   child: Text(
-                    "...  ضيف جديد ",
+                    '...  ضيف جديد ',
                     textAlign: TextAlign.end,
                     style: textTheme.headlineLarge!.copyWith(
                       shadows: <Shadow>[
@@ -85,124 +87,148 @@ class SingUpScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(14.0),
-            child: Column(
-              children: [
-                Material(
-                  elevation: 10,
-                  shadowColor: AppColor.whiteColor,
-                  child: SizedBox(
-                    height: 0.0592.height(context),
-                    width: 1.0.width(context),
-                    child: TextFieldWidget(
-                      controller: authController.nameController,
-                      hintText: 'الاسم',
-                      prefixIcon: const Icon(Icons.person_outline),
-                      validator: (value) {
-                        if (value.toString().isEmpty) {
-                          return 'لم تقم بإدخال أي قيمة';
-                        } else {
-                          return null;
-                        }
-                      },
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Material(
+                    elevation: 10,
+                    shadowColor: AppColor.whiteColor,
+                    child: SizedBox(
+                      height: 0.0592.height(context),
+                      width: 1.0.width(context),
+                      child: TextFieldWidget(
+                          controller: authController.nameController,
+                          hintText: 'الاسم',
+                          prefixIcon: const Icon(Icons.person_outline),
+                          validator: (value) {
+                            if (value.toString().isEmpty) {
+                              return 'لم تقم بإدخال أي قيمة';
+                            } else if (value.toString().length < 3) {
+                              return 'الاسم يجب ان يكون طوله ٣ حروف على الاقل';
+                            } else {
+                              return null;
+                            }
+                          }),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 0.02369.height(context),
-                ),
-                Material(
-                  elevation: 10,
-                  shadowColor: AppColor.whiteColor,
-                  child: SizedBox(
-                    height: 0.0592.height(context),
-                    width: 1.0.width(context),
-                    child: TextFieldWidget(
-                      controller: authController.emailController,
-                      hintText: 'البريد الاكتروني',
-                      prefixIcon: const Icon(Icons.email_outlined),
-                      validator: (value) {
-                        if (value.toString().isEmpty) {
-                          return 'لم تقم بإدخال أي قيمة';
-                        } else {
-                          return null;
-                        }
-                      },
+                  SizedBox(
+                    height: 0.02369.height(context),
+                  ),
+                  Material(
+                    elevation: 10,
+                    shadowColor: AppColor.whiteColor,
+                    child: SizedBox(
+                      height: 0.0592.height(context),
+                      width: 1.0.width(context),
+                      child: TextFieldWidget(
+                        controller: authController.emailController,
+                        hintText: 'البريد الاكتروني',
+                        prefixIcon: const Icon(Icons.email_outlined),
+                        validator: (value) {
+                          if (value.toString().isEmpty) {
+                            return 'لم تقم بإدخال أي قيمة';
+                          } else if (!Validation.isValidEmailExtension(value)) {
+                            return 'يجب ان يكون الايميل ايميل الكراج';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
                     ),
                   ),
-                ),
-                 SizedBox(
-                  height: 0.02369.height(context),
-                ),
-                Material(
-                  elevation: 10,
-                  shadowColor: AppColor.whiteColor,
-                  child: SizedBox(
-                    height: 0.0592.height(context),
-                    width: 1.0.width(context),
-                    child: TextFieldWidget(
-                      controller: authController.passwordController,
-                      hintText: 'كلمة المرور',
-                      prefixIcon: const Icon(Icons.lock_outlined),
-                      validator: (value) {
-                        if (value.toString().isEmpty) {
-                          return 'لم تقم بإدخال أي قيمة';
-                        } else {
-                          return null;
-                        }
-                      },
+                  SizedBox(
+                    height: 0.02369.height(context),
+                  ),
+                  Material(
+                    elevation: 10,
+                    shadowColor: AppColor.whiteColor,
+                    child: SizedBox(
+                      height: 0.0592.height(context),
+                      width: 1.0.width(context),
+                      child: TextFieldWidget(
+                          controller: authController.passwordController,
+                          hintText: 'كلمة المرور',
+                          prefixIcon: const Icon(Icons.lock_outlined),
+                          validator: (value) {
+                            if (value.toString().isEmpty) {
+                              return 'لم تقم بإدخال أي قيمة';
+                            } else if (value.toString().length < 6) {
+                              return 'كلمه السر يجب ان يكون طوله ٦ حروف على الاقل';
+                            } else if (!RegExp(Validation.validationUppercase)
+                                .hasMatch(value)) {
+                              return 'كلمة السر يجب ان تحتوي على حرف كبير واحد على الاقل';
+                            } else if (!RegExp(Validation.validationLowercase)
+                                .hasMatch(value)) {
+                              return 'كلمة السر يجب ان تحتوي على حرف صغير واحد على الاقل';
+                            } else if (!RegExp(Validation.validationDigit)
+                                .hasMatch(value)) {
+                              return 'كلمة السر يجب ان تحتوي على رقم واحد على الاقل';
+                            } else {
+                              return null;
+                            }
+                          }),
                     ),
                   ),
-                ),
-                 SizedBox(
-                  height: 0.02369.height(context),
-                ),
-                Material(
-                  elevation: 10,
-                  shadowColor: AppColor.whiteColor,
-                  child: SizedBox(
-                    height: 0.0592.height(context),
-                    width: 1.0.width(context),
-                    child: TextFieldWidget(
-                      controller: authController.confirmPasswordController,
-                      hintText: 'كرر كلمه المرور',
-                      prefixIcon: const Icon(Icons.lock_outlined),
-                      validator: (value) {
-                        if (value.toString().isEmpty) {
-                          return 'لم تقم بإدخال أي قيمة';
-                        } else {
-                          return null;
-                        }
-                      },
+                  SizedBox(
+                    height: 0.02369.height(context),
+                  ),
+                  Material(
+                    elevation: 10,
+                    shadowColor: AppColor.whiteColor,
+                    child: SizedBox(
+                      height: 0.0592.height(context),
+                      width: 1.0.width(context),
+                      child: TextFieldWidget(
+                        controller: authController.confirmPasswordController,
+                        hintText: 'كرر كلمه المرور',
+                        prefixIcon: const Icon(Icons.lock_outlined),
+                        validator: (value) {
+                          if (value.toString().isEmpty) {
+                            return 'لم تقم بإدخال أي قيمة';
+                          } else if (value !=
+                              authController.passwordController.text) {
+                            return 'غير متطابق مع كلمه السر';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
                     ),
                   ),
-                ),
-                 SizedBox(
-                  height: 0.0710.height(context),
-                ),
-                SizedBox(
-                  height: 0.05687.height(context),
-                  width: 0.9230.width(context),
-                  child: ElevatedButton(
-                    onPressed: () {},
+                  SizedBox(
+                    height: 0.0710.height(context),
+                  ),
+                  SizedBox(
+                    height: 0.05687.height(context),
+                    width: 0.9230.width(context),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        (_formKey.currentState!.validate())
+                            ? authController.signUpWithEmail(
+                                authController.emailController.text,
+                                authController.passwordController.text,
+                                authController.nameController.text)
+                            : null;
+                      },
+                      child: Text(
+                        'تسجيل',
+                        style: textTheme.displayLarge,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 0.0118.height(context)),
+                  TextButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.loginScreen);
+                    },
                     child: Text(
-                      'تسجيل',
-                      style: textTheme.displayLarge,
+                      'الدخول',
+                      style: textTheme.labelMedium,
                     ),
                   ),
-                ),
-                 SizedBox(
-                  height:  0.0118.height(context)
-                ),
-                TextButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.loginScreen);
-                  },
-                  child: Text(
-                    'الدخول',
-                    style: textTheme.labelMedium,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

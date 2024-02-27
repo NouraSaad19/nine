@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 32.0),
                   child: Text(
-                    "...  حياكم الله مجددا       ",
+                    '...  حياكم الله مجددا       ',
                     textAlign: TextAlign.end,
                     style: textTheme.headlineLarge!.copyWith(
                       shadows: <Shadow>[
