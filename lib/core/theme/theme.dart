@@ -21,6 +21,7 @@ ThemeData lightThemeData() {
     iconTheme: IconThemeData(
       color: AppColor.tiffanyColor,
     ),
+
     //AppBarTheme
     appBarTheme: AppBarTheme(
         systemOverlayStyle: const SystemUiOverlayStyle(
@@ -103,24 +104,23 @@ ThemeData lightThemeData() {
       elevation: 0.0,
       backgroundColor: AppColor.whiteColor,
     )),
-    //CheckboxThemeData
+
     checkboxTheme: CheckboxThemeData(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(3),
+        borderRadius: BorderRadius.circular(5),
       ),
-      fillColor: MaterialStateProperty.all(
-        AppColor.blackColor,
-      ),
-      checkColor: MaterialStateProperty.all(AppColor.whiteColor),
+      checkColor: MaterialStateProperty.all(AppColor.orangeColor),
+      fillColor: MaterialStateProperty.all(Colors.transparent),
     ),
     //TextSelectionThemeData
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: AppColor.greyColor,
     ),
-    snackBarTheme: const SnackBarThemeData(
-        actionTextColor: Colors.white,
-        backgroundColor: Colors.white,
-        contentTextStyle: TextStyle(color: Colors.white),
+
+    snackBarTheme: SnackBarThemeData(
+        actionTextColor: AppColor.whiteColor,
+        backgroundColor: AppColor.whiteColor,
+        contentTextStyle: TextStyle(color: AppColor.whiteColor),
         elevation: 20),
   );
 }

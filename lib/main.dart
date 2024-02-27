@@ -30,10 +30,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: ThemeApp.lightTheme,
             getPages: AppRoutes.routes,
-
-
             initialRoute: Routes.singUpScreen),
-
       ),
     );
   }

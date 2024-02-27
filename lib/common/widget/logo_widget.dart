@@ -7,15 +7,19 @@ class LogoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Center(
       child: Container(
-        height: 0.21.height(context),
-        width: 0.48.width(context),
+        height: 0.20142.height(context),
+        width: 0.4358.width(context),
         decoration: ShapeDecoration(
           gradient: LinearGradient(
             begin: const Alignment(0.72, -0.70),
             end: const Alignment(-0.72, 0.7),
-            colors: [AppColor.logoShadowWhiteColor, AppColor.logoShadowCreamColor],
+            colors: [
+              AppColor.logoShadowWhiteColor,
+              AppColor.logoShadowCreamColor
+            ],
           ),
           shape: RoundedRectangleBorder(
             side: BorderSide(width: 0.50, color: AppColor.logoShadowCloudColor),
@@ -40,8 +44,8 @@ class LogoWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 0.1045.height(context),
-              width: 0.219.width(context),
+              height: 0.1066.height(context),
+              width: 0.2307.width(context),
               child: Stack(
                 children: [
                   for (double left in [0, 29.69, 59.38])
@@ -91,10 +95,9 @@ class LogoWidget extends StatelessWidget {
             Text(
               'تسعة',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 36,
+              style: textTheme.labelLarge?.copyWith(
+                fontSize: 30,
                 fontWeight: FontWeight.w700,
-                color: AppColor.tiffanyColor,
                 shadows: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.1),
