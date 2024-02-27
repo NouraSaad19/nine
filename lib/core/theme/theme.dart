@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/core/theme/text_theme.dart';
-
 import 'app_colors.dart';
 
 class ThemeApp {
   ThemeApp._();
-
   static final lightTheme = lightThemeData();
 }
 
@@ -112,25 +110,23 @@ ThemeData lightThemeData() {
       backgroundColor: AppColor.whiteColor,
     )),
 
-    //CheckboxThemeData
     checkboxTheme: CheckboxThemeData(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(3),
+        borderRadius: BorderRadius.circular(5),
       ),
-      fillColor: MaterialStateProperty.all(
-        AppColor.blackColor,
-      ),
-      checkColor: MaterialStateProperty.all(AppColor.whiteColor),
+      checkColor: MaterialStateProperty.all(AppColor.orangeColor),
+      fillColor: MaterialStateProperty.all(Colors.transparent),
     ),
 
     //TextSelectionThemeData
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: AppColor.greyColor,
     ),
-    snackBarTheme: const SnackBarThemeData(
-        actionTextColor: Colors.white,
-        backgroundColor: Colors.white,
-        contentTextStyle: TextStyle(color: Colors.white),
+
+    snackBarTheme: SnackBarThemeData(
+        actionTextColor: AppColor.whiteColor,
+        backgroundColor: AppColor.whiteColor,
+        contentTextStyle: TextStyle(color: AppColor.whiteColor),
         elevation: 20),
   );
 }

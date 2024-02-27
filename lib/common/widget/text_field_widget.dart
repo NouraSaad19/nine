@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/core/theme/app_colors.dart';
-import 'package:get/get.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -40,49 +39,27 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            right: 16,
-          ),
-          child: Align(
-            alignment: Alignment.topRight,
-            child: text == null
-                ? null
-                : Text(
-                    '$text',
-                    style: textTheme.bodyMedium,
-                  ),
-          ),
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        TextFormField(
-          maxLength: maxLength,
-          enabled: enabled,
-          style: textTheme.titleSmall,
-          controller: controller,
-          onChanged: onChanged,
-          keyboardType: keyboardType,
-          textAlign: TextAlign.end,
-          cursorColor:
-              Get.isDarkMode ? AppColor.whiteColor : AppColor.blackColor,
-          maxLines: maxLine,
-          validator: validator,
-          decoration: InputDecoration(
-            hintStyle: textTheme.labelMedium,
-            hintText: hintText,
-            labelStyle: textTheme.headlineSmall,
-            labelText: label,
-            prefixIcon: prefixIcon,
-            prefixText: numCode,
-            suffixIcon: suffixIcon,
-          ),
-          textInputAction: textInputAction,
-        ),
-      ],
+    return TextFormField(
+      maxLength: maxLength,
+      enabled: enabled,
+      style: textTheme.titleSmall,
+      controller: controller,
+      onChanged: onChanged,
+      keyboardType: keyboardType,
+      textAlign: TextAlign.end,
+      cursorColor: AppColor.tiffanyColor,
+      maxLines: maxLine,
+      validator: validator,
+      decoration: InputDecoration(
+        hintStyle: textTheme.labelMedium,
+        hintText: hintText,
+        labelStyle: textTheme.headlineSmall,
+        labelText: label,
+        prefixIcon: prefixIcon,
+        prefixText: numCode,
+        suffixIcon: suffixIcon,
+      ),
+      textInputAction: textInputAction,
     );
   }
 }

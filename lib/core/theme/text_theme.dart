@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'app_colors.dart';
 
 class CustomTextTheme {
   static TextTheme textTheme() {
     const FontWeight bold = FontWeight.w700;
     const FontWeight regular = FontWeight.w300;
+
     return TextTheme(
       headlineLarge: GoogleFonts.cairo(
           color: AppColor.orangeColor, fontSize: 20, fontWeight: bold),

@@ -20,11 +20,13 @@ dependencies:
   url_launcher: ^6.2.4
   http: ^1.2.0
   flutter_launcher_icons: ^0.13.1
+
   firebase_core: ^2.24.2
   firebase_auth: ^4.16.0
   cloud_firestore: ^4.14.0
   firebase_storage: ^11.6.0
   google_fonts: ^6.1.0
+
 
 
 dev_dependencies:
@@ -68,12 +70,3 @@ flutter:
 #    - .env
     - assets/images/
 
-  fonts:
-    - family: GE-SS-Two
-      fonts:
-        - asset: assets/fonts/GE-SS-Two-Bold.otf
-          weight: 900
-        - asset: assets/fonts/GE_SS_Two_Light.otf
-          weight: 300
-        - asset: assets/fonts/GE_SS_Two_Medium.otf
-          weight: 500
