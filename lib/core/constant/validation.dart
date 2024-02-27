@@ -1,12 +1,17 @@
 class Validation {
-  static const String validationEmail =
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+  static const String validationUppercase = r'[A-Z]';
 
-  static const String validationName = r'^[a-z A-Z]+$';
+  static const String validationLowercase = r'[a-z]';
 
-  static const String validationText = r'^[a-z A-Z 0-9]+$';
+  static const String validationDigit = r'[0-9]';
 
-  static const String validationPhoneNumber = r'(?:\+?0*?966)?0?(5[0-9]{8})';
-
-  static const String validationNumber = r'(^\u0665[\u0660-\u0669]{8}$)';
+  static bool isValidEmailExtension(String email) {
+    List<String> parts = email.split('@');
+    if (parts.length != 2) {
+      return false;
+    }
+    String allowedDomains = 'thegarage.sa';
+    String domain = parts[1].toLowerCase();
+    return allowedDomains.contains(domain);
+  }
 }
