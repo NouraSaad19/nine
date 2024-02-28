@@ -24,6 +24,8 @@ class AuthController extends GetxController {
       onDone: (String? uid) async {
         if (uid != null) {
           clearControllers();
+          Get.snackbar(
+              '', 'الرجاء التوجه على بريدك الاكتروني حتى يتم تفعيل الحساب');
           Get.offNamed(Routes.loginScreen);
         }
       },
