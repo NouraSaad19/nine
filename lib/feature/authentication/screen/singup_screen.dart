@@ -15,6 +15,7 @@ class SingUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
     final AuthController authController = AuthController();
     return Scaffold(
       body: Column(
@@ -212,8 +213,8 @@ class SingUpScreen extends StatelessWidget {
                             : null;
                       },
                       child: Text(
-                        'تسجيل',
-                        style: textTheme.displayLarge,
+                        'الدخول',
+                        style: textTheme.labelMedium,
                       ),
                     ),
                   ),

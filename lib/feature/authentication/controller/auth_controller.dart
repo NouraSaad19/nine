@@ -12,6 +12,13 @@ class AuthController extends GetxController {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
+
+  bool isCheck = false;
+  bool isVisibility = true;
+  bool isVisibilityPassword = false;
+  bool isVisibilityConfirm = false;
+
+
   signUpWithEmail(
     String email,
     String password,
@@ -36,7 +43,30 @@ class AuthController extends GetxController {
         );
       },
     );
+
   }
+
+  // loginWithEmail(
+  //   String email,
+  //   String password,
+  // ) async {
+  //   await _authService.loginWithEmailFirebase(
+  //     email: email,
+  //     password: password,
+  //     onDone: (String? uid) async {
+  //       if (uid != null) {
+  //         clearControllers();
+  //         Get.offNamed(Routes.singUpScreen);
+  //       }
+  //     },
+  //     onError: (String e) {
+  //       Get.snackbar(
+  //         'Login failed',
+  //         e,
+  //       );
+  //     },
+  //   );
+  // }
 
   clearControllers() {
     nameController.clear();
@@ -44,4 +74,22 @@ class AuthController extends GetxController {
     passwordController.clear();
     confirmPasswordController.clear();
   }
+
+  void updateCheckBox(bool value) {
+    isCheck = value;
+    update();
+  }
+
+  void visibility() {
+    isVisibility = !isVisibility;
+    update();
+  }
+
+  void visibilityPassword() {
+    isVisibilityPassword = !isVisibilityPassword;
+    update();
+
+  }
+
+
 }
