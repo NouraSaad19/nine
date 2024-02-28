@@ -18,6 +18,7 @@ class AuthService {
       if (credential.user?.uid != null) {
         credential.user?.updateDisplayName(name);
       }
+      FirebaseInstance.firebaseAuth.currentUser!.sendEmailVerification();
       onDone(credential.user?.uid);
     } on FirebaseAuthException catch (e) {
       onError(e.message.toString());
