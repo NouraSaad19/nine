@@ -167,8 +167,7 @@ class SingUpScreen extends StatelessWidget {
                             } else {
                               return null;
                             }
-                          }
-                          ),
+                          }),
                     ),
                     SizedBox(
                       height: 0.02369.height(context),

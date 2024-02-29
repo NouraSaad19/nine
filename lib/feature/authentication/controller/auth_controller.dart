@@ -14,7 +14,6 @@ class AuthController extends GetxController {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
-
   bool isCheck = false;
   bool isVisibility = true;
   bool isVisibilityPassword = false;
@@ -56,7 +55,7 @@ class AuthController extends GetxController {
       onDone: (String? uid) async {
         if (uid != null) {
           clearControllers();
-          Get.offNamed(Routes.homeScreen);
+          Get.offNamed(Routes.profileScreen);
         }
       },
       onError: (String e) {
@@ -86,8 +85,6 @@ class AuthController extends GetxController {
     passwordController.clear();
     confirmPasswordController.clear();
   }
-
-
 
   void updateCheckBox(bool value) {
     isCheck = value;
