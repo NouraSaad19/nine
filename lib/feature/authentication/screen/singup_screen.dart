@@ -15,7 +15,7 @@ class SingUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-
+    var size = MediaQuery.of(context).size;
     final AuthController authController = AuthController();
     return Scaffold(
       body: Column(
@@ -86,18 +86,16 @@ class SingUpScreen extends StatelessWidget {
           SizedBox(
             height: 0.01184.height(context),
           ),
-          Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Form(
+          GetBuilder<AuthController>(builder: (authController) {
+            return Form(
               key: _formKey,
-              child: Column(
-                children: [
-                  Material(
-                    elevation: 10,
-                    shadowColor: AppColor.whiteColor,
-                    child: SizedBox(
-                      height: 0.0592.height(context),
-                      width: 1.0.width(context),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Material(
+                      elevation: 10,
+                      shadowColor: AppColor.whiteColor,
                       child: TextFieldWidget(
                           controller: authController.nameController,
                           hintText: 'الاسم',
@@ -112,16 +110,12 @@ class SingUpScreen extends StatelessWidget {
                             }
                           }),
                     ),
-                  ),
-                  SizedBox(
-                    height: 0.02369.height(context),
-                  ),
-                  Material(
-                    elevation: 10,
-                    shadowColor: AppColor.whiteColor,
-                    child: SizedBox(
-                      height: 0.0592.height(context),
-                      width: 1.0.width(context),
+                    SizedBox(
+                      height: 0.02369.height(context),
+                    ),
+                    Material(
+                      elevation: 10,
+                      shadowColor: AppColor.whiteColor,
                       child: TextFieldWidget(
                         controller: authController.emailController,
                         hintText: 'البريد الاكتروني',
@@ -137,20 +131,25 @@ class SingUpScreen extends StatelessWidget {
                         },
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 0.02369.height(context),
-                  ),
-                  Material(
-                    elevation: 10,
-                    shadowColor: AppColor.whiteColor,
-                    child: SizedBox(
-                      height: 0.0592.height(context),
-                      width: 1.0.width(context),
+                    SizedBox(
+                      height: 0.02369.height(context),
+                    ),
+                    Material(
+                      elevation: 10,
+                      shadowColor: AppColor.whiteColor,
                       child: TextFieldWidget(
                           controller: authController.passwordController,
                           hintText: 'كلمة المرور',
-                          prefixIcon: const Icon(Icons.lock_outlined),
+                          prefixIcon: IconButton(
+                            onPressed: () {
+                              authController.visibilityPassword();
+                            },
+                            icon: Icon(
+                              authController.isVisibilityPassword
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                            ),
+                          ),
                           validator: (value) {
                             if (value.toString().isEmpty) {
                               return 'لم تقم بإدخال أي قيمة';
@@ -168,22 +167,28 @@ class SingUpScreen extends StatelessWidget {
                             } else {
                               return null;
                             }
-                          }),
+                          }
+                          ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 0.02369.height(context),
-                  ),
-                  Material(
-                    elevation: 10,
-                    shadowColor: AppColor.whiteColor,
-                    child: SizedBox(
-                      height: 0.0592.height(context),
-                      width: 1.0.width(context),
+                    SizedBox(
+                      height: 0.02369.height(context),
+                    ),
+                    Material(
+                      elevation: 10,
+                      shadowColor: AppColor.whiteColor,
                       child: TextFieldWidget(
                         controller: authController.confirmPasswordController,
                         hintText: 'كرر كلمه المرور',
-                        prefixIcon: const Icon(Icons.lock_outlined),
+                        prefixIcon: IconButton(
+                          onPressed: () {
+                            authController.visibilityConfirmPassword();
+                          },
+                          icon: Icon(
+                            authController.isVisibilityConfirm
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                          ),
+                        ),
                         validator: (value) {
                           if (value.toString().isEmpty) {
                             return 'لم تقم بإدخال أي قيمة';
@@ -196,42 +201,43 @@ class SingUpScreen extends StatelessWidget {
                         },
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 0.0710.height(context),
-                  ),
-                  SizedBox(
-                    height: 0.05687.height(context),
-                    width: 0.9230.width(context),
-                    child: ElevatedButton(
+                    Container(
+                      height: 0.0473.height(context),
+                    ),
+                    SizedBox(
+                      height: 0.05687.height(context),
+                      width: 0.9230.width(context),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          (_formKey.currentState!.validate())
+                              ? authController.signUpWithEmail(
+                                  authController.emailController.text,
+                                  authController.passwordController.text,
+                                  authController.nameController.text)
+                              : null;
+                        },
+                        child: Text(
+                          'تسجيل',
+                          style: textTheme.displayLarge,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 0.0118.height(context)),
+                    TextButton(
                       onPressed: () {
-                        (_formKey.currentState!.validate())
-                            ? authController.signUpWithEmail(
-                                authController.emailController.text,
-                                authController.passwordController.text,
-                                authController.nameController.text)
-                            : null;
+                        authController.clearControllers();
+                        Get.toNamed(Routes.loginScreen);
                       },
                       child: Text(
                         'الدخول',
                         style: textTheme.labelMedium,
                       ),
                     ),
-                  ),
-                  SizedBox(height: 0.0118.height(context)),
-                  TextButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.loginScreen);
-                    },
-                    child: Text(
-                      'الدخول',
-                      style: textTheme.labelMedium,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ),
+            );
+          }),
         ],
       ),
     );

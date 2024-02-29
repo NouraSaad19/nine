@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../../core/constant/keys.dart';
+import '../../../core/route/route.dart';
 
 class SplashController extends GetxController {
   final _getStorage = GetStorage();
@@ -11,11 +12,11 @@ class SplashController extends GetxController {
 
     if (_getStorage.read(Keys.tokenKey) != null) {
       Future.delayed(const Duration(milliseconds: 3700), () {
-        // Get.offNamed(Routes.navigationScreen);
+        Get.offNamed(Routes.homeScreen);
       });
     } else {
       Future.delayed(const Duration(milliseconds: 3700), () {
-        // Get.offNamed(Routes.loginScreen);
+        Get.offNamed(Routes.loginScreen);
       });
     }
   }
