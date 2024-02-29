@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/common/widget/logo_widget.dart';
+import 'package:flutter_template/core/constant/validation.dart';
 import 'package:flutter_template/core/extension/spaceing_extentsion.dart';
 import 'package:flutter_template/feature/authentication/widget/forget_password_widget.dart';
 import 'package:get/get.dart';
@@ -9,7 +10,8 @@ import '../../../core/theme/app_colors.dart';
 import '../controller/auth_controller.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -78,40 +80,38 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
         GetBuilder<AuthController>(builder: (authController) {
-          return Padding(
-            padding: const EdgeInsets.all(14.0),
-            child: Column(
-              children: [
-                Material(
-                  elevation: 10,
-                  shadowColor: AppColor.whiteColor,
-                  child: SizedBox(
-                    height: 0.0592.height(context),
-                    width: 1.0.width(context),
+          return Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Material(
+                    elevation: 10,
+                    shadowColor: AppColor.whiteColor,
                     child: TextFieldWidget(
-                      controller: authController.emailController,
-                      hintText: 'البريد الاكتروني',
-                      prefixIcon: const Icon(Icons.email_outlined),
-                      validator: (value) {
-                        if (value.toString().isEmpty) {
-                          return 'لم تقم بإدخال أي قيمة';
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
+                        controller: authController.emailController,
+                        hintText: 'البريد الاكتروني',
+                        prefixIcon: const Icon(Icons.email_outlined),
+                        validator: (value) {
+                          if (value.toString().isEmpty) {
+                            return 'لم تقم بإدخال أي قيمة';
+                          } else if (!Validation.isValidEmailExtension(value)) {
+                            return 'يجب ان يكون الايميل ايميل الكراج';
+                          } else {
+                            return null;
+                          }
+                        }),
                   ),
-                ),
-                SizedBox(
-                  height: 0.02369.height(context),
-                ),
-                Material(
-                  elevation: 10,
-                  shadowColor: AppColor.whiteColor,
-                  child: SizedBox(
-                    height: 0.0592.height(context),
-                    width: 1.0.width(context),
+                  SizedBox(
+                    height: 0.02369.height(context),
+                  ),
+                  Material(
+                    elevation: 10,
+                    shadowColor: AppColor.whiteColor,
                     child: TextFieldWidget(
+                      obscureText: authController.isVisibility,
+                      maxLine: 1,
                       controller: authController.passwordController,
                       hintText: 'كلمة المرور',
                       prefixIcon: IconButton(
@@ -124,82 +124,102 @@ class LoginScreen extends StatelessWidget {
                               : Icons.visibility_outlined,
                         ),
                       ),
+
                       validator: (value) {
                         if (value.toString().isEmpty) {
                           return 'لم تقم بإدخال أي قيمة';
+                        } else if (value !=
+                            authController.passwordController.text) {
+                          return ' ';
                         } else {
                           return null;
                         }
                       },
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        MediaQuery.removePadding(
-                          removeRight: true,
-                          removeLeft: true,
-                          context: context,
-                          child: Checkbox(
-                            side: BorderSide(
-                                width: 1, color: AppColor.orangeColor),
-                            value: authController.isCheck,
-                            checkColor: AppColor.whiteColor,
-                            activeColor: AppColor.orangeColor,
-                            onChanged: (bool? value) {
-                              authController.updateCheckBox(value!);
-                            },
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          MediaQuery.removePadding(
+                            removeRight: true,
+                            removeLeft: true,
+                            context: context,
+                            child: Checkbox(
+                              side: BorderSide(
+                                  width: 1, color: AppColor.orangeColor),
+                              value: authController.isCheck,
+                              checkColor: AppColor.whiteColor,
+                              activeColor: AppColor.orangeColor,
+                              onChanged: (bool? value) {
+                                authController.updateCheckBox(value!);
+                              },
+                            ),
                           ),
+                          Text('تذكرني ', style: textTheme.headlineMedium),
+                        ],
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                          Get.bottomSheet(
+                              ignoreSafeArea: false,
+                              isScrollControlled: true,
+                              const ForgetPassWordWidget());
+                        },
+                        child: Text(
+                          ' هل نسيت كلمة المرور ؟  ',
+                          style: textTheme.headlineMedium,
                         ),
-                        Text('تذكرني ', style: textTheme.headlineMedium),
-                      ],
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.back();
-                        Get.bottomSheet(
-                            ignoreSafeArea: false,
-                            isScrollControlled: true,
-                            const ForgetPassWordWidget());
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 0.0710.height(context),
+                  ),
+                  SizedBox(
+                    height: 0.05687.height(context),
+                    width: 0.9230.width(context),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          if (authController.isCheck) {
+                            String? uid = await authController.loginWithEmail(
+                                authController.emailController.text,
+                                authController.passwordController.text);
+
+                            if (uid != null) {
+                              authController.loginWithGetStorage(
+                                authController.emailController.text,
+                                authController.passwordController.text,
+                                true,
+                              );
+                            }
+                          }
+                        }
                       },
                       child: Text(
-                        ' هل نسيت كلمة المرور ؟  ',
-                        style: textTheme.headlineMedium,
+                        'الدخول',
+                        style: textTheme.displayLarge,
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 0.0710.height(context),
-                ),
-                SizedBox(
-                  height: 0.05687.height(context),
-                  width: 0.9230.width(context),
-                  child: ElevatedButton(
-                    onPressed: () {},
+                  ),
+                  SizedBox(height: 0.0118.height(context)),
+                  TextButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.singUpScreen);
+                    },
                     child: Text(
-                      'الدخول',
-                      style: textTheme.displayLarge,
+                      'للتسجيل معانا',
+                      style: textTheme.labelMedium,
                     ),
                   ),
-                ),
-                SizedBox(height: 0.0118.height(context)),
-                TextButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.singUpScreen);
-                  },
-                  child: Text(
-                    'للتسجيل معانا',
-                    style: textTheme.labelMedium,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         }),

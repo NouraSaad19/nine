@@ -44,33 +44,30 @@ ThemeData lightThemeData() {
         fontSize: 24,
       ),
       disabledBackgroundColor: AppColor.tiffanyColor,
-      disabledForegroundColor: AppColor.whiteColor,
+      disabledForegroundColor: AppColor.tiffanyColor,
       minimumSize: const Size(398, 45),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       elevation: 0.0,
       backgroundColor: AppColor.orangeColor,
     )),
-    //InputDecorationTheme
+
     inputDecorationTheme: InputDecorationTheme(
-      fillColor: AppColor.greyColor.shade200,
+      contentPadding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10),
+      fillColor: AppColor.whiteColor,
       prefixIconColor: AppColor.tiffanyColor,
-      focusedErrorBorder: const UnderlineInputBorder(
-        borderSide: BorderSide.none,
-      ),
-      disabledBorder: UnderlineInputBorder(
-        borderRadius: BorderRadius.circular(5),
-        borderSide: BorderSide.none,
-      ),
       focusedBorder: UnderlineInputBorder(
-        borderRadius: BorderRadius.circular(5),
-        borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(5),
+          borderSide: BorderSide(width: 1, color: AppColor.tiffanyColor)),
+      border: const UnderlineInputBorder(
+        borderSide: BorderSide(
+          width: 1,
+        ),
       ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(5),
-        borderSide: BorderSide.none,
-      ),
+      enabledBorder: UnderlineInputBorder(
+          borderRadius: BorderRadius.circular(5), borderSide: BorderSide.none),
       filled: true,
     ),
+
     //TextButtonThemeData
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
@@ -99,10 +96,10 @@ ThemeData lightThemeData() {
         color: AppColor.blackColor,
       ),
       disabledBackgroundColor: AppColor.blackColor,
-      minimumSize: const Size(398, 37),
+      minimumSize: const Size(380, 37),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       elevation: 0.0,
-      backgroundColor: AppColor.whiteColor,
+      backgroundColor: AppColor.tiffanyColor,
     )),
 
     checkboxTheme: CheckboxThemeData(

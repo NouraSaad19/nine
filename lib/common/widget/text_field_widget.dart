@@ -48,7 +48,7 @@ class TextFieldWidget extends StatelessWidget {
       keyboardType: keyboardType,
       textAlign: TextAlign.end,
       cursorColor: AppColor.tiffanyColor,
-      maxLines: maxLine,
+      maxLines: 1,
       validator: validator,
       decoration: InputDecoration(
         hintStyle: textTheme.labelMedium,

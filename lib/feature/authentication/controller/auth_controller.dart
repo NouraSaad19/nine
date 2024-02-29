@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/core/route/route.dart';
 import 'package:flutter_template/feature/authentication/service/auth_service.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import '../../../core/constant/keys.dart';
 
 class AuthController extends GetxController {
   final AuthService _authService = AuthService();
@@ -17,7 +19,6 @@ class AuthController extends GetxController {
   bool isVisibility = true;
   bool isVisibilityPassword = false;
   bool isVisibilityConfirm = false;
-
 
   signUpWithEmail(
     String email,
@@ -43,29 +44,40 @@ class AuthController extends GetxController {
         );
       },
     );
-
   }
 
-  // loginWithEmail(
-  //   String email,
-  //   String password,
-  // ) async {
-  //   await _authService.loginWithEmailFirebase(
-  //     email: email,
-  //     password: password,
-  //     onDone: (String? uid) async {
-  //       if (uid != null) {
-  //         clearControllers();
-  //         Get.offNamed(Routes.singUpScreen);
-  //       }
-  //     },
-  //     onError: (String e) {
-  //       Get.snackbar(
-  //         'Login failed',
-  //         e,
-  //       );
-  //     },
-  //   );
+  loginWithEmail(
+    String email,
+    String password,
+  ) async {
+    await _authService.loginWithEmailFirebase(
+      email: email,
+      password: password,
+      onDone: (String? uid) async {
+        if (uid != null) {
+          clearControllers();
+          Get.offNamed(Routes.homeScreen);
+        }
+      },
+      onError: (String e) {
+        Get.snackbar(
+          'Login failed',
+          e,
+        );
+      },
+    );
+  }
+
+  void loginWithGetStorage(String email, String password, bool isSignIn) async {
+    await GetStorage().write(Keys.emailKey, email);
+    await GetStorage().write(Keys.loginSaveKey, isSignIn);
+    update();
+  }
+
+  // void logOut() async {
+  //   await storage.remove(Keys.emailKey);
+  //   await storage.remove(Keys.loginSaveKey);
+  //   update();
   // }
 
   clearControllers() {
@@ -75,6 +87,8 @@ class AuthController extends GetxController {
     confirmPasswordController.clear();
   }
 
+
+
   void updateCheckBox(bool value) {
     isCheck = value;
     update();
@@ -82,14 +96,17 @@ class AuthController extends GetxController {
 
   void visibility() {
     isVisibility = !isVisibility;
+    print(" hi  $isVisibility");
     update();
   }
 
   void visibilityPassword() {
     isVisibilityPassword = !isVisibilityPassword;
     update();
-
   }
 
-
+  void visibilityConfirmPassword() {
+    isVisibilityConfirm = !isVisibilityConfirm;
+    update();
+  }
 }
