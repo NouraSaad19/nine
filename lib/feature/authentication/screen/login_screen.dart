@@ -191,7 +191,6 @@ class LoginScreen extends StatelessWidget {
                             String? uid = await authController.loginWithEmail(
                                 authController.emailController.text,
                                 authController.passwordController.text);
-
                             if (uid != null) {
                               authController.loginWithGetStorage(
                                 authController.emailController.text,
