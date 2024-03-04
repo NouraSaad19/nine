@@ -124,7 +124,6 @@ class LoginScreen extends StatelessWidget {
                               : Icons.visibility_outlined,
                         ),
                       ),
-
                       validator: (value) {
                         if (value.toString().isEmpty) {
                           return 'لم تقم بإدخال أي قيمة';
@@ -187,7 +186,7 @@ class LoginScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          if (authController.isCheck) {
+                          if (!authController.isCheck) {
                             String? uid = await authController.loginWithEmail(
                                 authController.emailController.text,
                                 authController.passwordController.text);

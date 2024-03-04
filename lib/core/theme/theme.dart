@@ -52,8 +52,9 @@ ThemeData lightThemeData() {
     )),
 
     inputDecorationTheme: InputDecorationTheme(
+   
       contentPadding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10),
-      fillColor: AppColor.whiteColor,
+      fillColor: AppColor.greyColor.shade200,
       prefixIconColor: AppColor.tiffanyColor,
       focusedBorder: UnderlineInputBorder(
           borderRadius: BorderRadius.circular(5),

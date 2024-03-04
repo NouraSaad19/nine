@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/core/constant/app_image.dart';
 import 'package:flutter_template/core/theme/app_colors.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
-  const ProfileHeaderWidget({super.key});
+  final Function() onPressed;
+  final IconData icon;
+  final String title;
+  const ProfileHeaderWidget(
+      {super.key,
+      required this.onPressed,
+      required this.title,
+      required this.icon});
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return Row(
-      children: [
-        const SizedBox(width: 50),
-        Text(
-          'صفحة الشخصية',
-          style: textTheme.headlineLarge,
-        ),
-        const SizedBox(width: 50),
-        Stack(
-          alignment: Alignment.centerRight,
-          children: [
-            Container(
+    return Padding(
+      padding: const EdgeInsets.only(top: 90, right: 30, left: 130),
+      child: Row(
+        children: [
+          Text(
+            title,
+            style: textTheme.headlineMedium,
+          ),
+          const SizedBox(width: 40),
+          InkWell(
+            child: Container(
               height: 36,
               width: 36,
               decoration: ShapeDecoration(
@@ -50,11 +57,16 @@ class ProfileHeaderWidget extends StatelessWidget {
                   ),
                 ],
               ),
+              child: IconButton(
+                  onPressed: onPressed,
+                  icon: Icon(
+                    icon,
+                    size: 15,
+                  )),
             ),
-            IconButton(onPressed: () {}, icon: Icon(Icons.edit_outlined))
-          ],
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

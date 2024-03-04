@@ -14,6 +14,8 @@ class AuthController extends GetxController {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
+  GetStorage authStorage = GetStorage();
+
   bool isCheck = false;
   bool isVisibility = true;
   bool isVisibilityPassword = false;
@@ -54,6 +56,7 @@ class AuthController extends GetxController {
       password: password,
       onDone: (String? uid) async {
         if (uid != null) {
+          await authStorage.write(Keys.authKey, uid);
           clearControllers();
           Get.offNamed(Routes.profileScreen);
         }

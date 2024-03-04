@@ -42,7 +42,7 @@ class TextFieldWidget extends StatelessWidget {
     return TextFormField(
       maxLength: maxLength,
       enabled: enabled,
-      style: textTheme.titleSmall,
+      style: textTheme.labelMedium,
       controller: controller,
       onChanged: onChanged,
       keyboardType: keyboardType,

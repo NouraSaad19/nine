@@ -15,8 +15,7 @@ class SingUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    var size = MediaQuery.of(context).size;
-    final AuthController authController = AuthController();
+
     return Scaffold(
       body: Column(
         children: [

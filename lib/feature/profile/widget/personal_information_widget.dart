@@ -51,22 +51,6 @@ class PersonalInformationWidget extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  'مبرمجة',
-                  style: textTheme.labelMedium,
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Text(
-                  ' العمل',
-                  style: textTheme.labelMedium,
-                ),
-              ],
-            ),
           ],
         ),
       );
