@@ -22,18 +22,23 @@ ThemeData lightThemeData() {
       color: AppColor.tiffanyColor,
     ),
 
-    //AppBarTheme
-    appBarTheme: AppBarTheme(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
-          statusBarBrightness: Brightness.light,
-        ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(
-          color: AppColor.blackColor,
-        )),
+    // FloatingActionButtonThemeData
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: AppColor.greyColor.shade200,
+      foregroundColor: AppColor.tiffanyColor,
+      elevation: 10.0,
+      focusElevation: 10.0,
+      hoverElevation: 10.0,
+      disabledElevation: 10.0,
+      highlightElevation: 10.0,
+      splashColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(width: 0.50, color: AppColor.whiteColor),
+        borderRadius: BorderRadius.circular(40),
+      ),
+    ),
+
+
     //ElevatedButtonThemeData
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -116,8 +121,8 @@ ThemeData lightThemeData() {
     ),
 
     snackBarTheme: SnackBarThemeData(
-        actionTextColor: AppColor.whiteColor,
-        backgroundColor: AppColor.whiteColor,
+        actionTextColor: AppColor.orangeColor,
+        backgroundColor: AppColor.orangeColor,
         contentTextStyle: TextStyle(color: AppColor.whiteColor),
         elevation: 20),
   );

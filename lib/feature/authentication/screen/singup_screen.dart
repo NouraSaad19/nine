@@ -137,6 +137,7 @@ class SingUpScreen extends StatelessWidget {
                       elevation: 10,
                       shadowColor: AppColor.whiteColor,
                       child: TextFieldWidget(
+                          obscureText: authController.isVisibilityPassword,
                           controller: authController.passwordController,
                           hintText: 'كلمة المرور',
                           prefixIcon: IconButton(
@@ -177,6 +178,7 @@ class SingUpScreen extends StatelessWidget {
                       child: TextFieldWidget(
                         controller: authController.confirmPasswordController,
                         hintText: 'كرر كلمه المرور',
+                        obscureText: authController.isVisibilityConfirm,
                         prefixIcon: IconButton(
                           onPressed: () {
                             authController.visibilityConfirmPassword();

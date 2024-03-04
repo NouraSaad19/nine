@@ -16,10 +16,11 @@ class AuthController extends GetxController {
 
   GetStorage authStorage = GetStorage();
 
-  bool isCheck = false;
+  bool isCheck = true;
+
   bool isVisibility = true;
-  bool isVisibilityPassword = false;
-  bool isVisibilityConfirm = false;
+  bool isVisibilityPassword = true;
+  bool isVisibilityConfirm = true;
 
   signUpWithEmail(
     String email,
@@ -58,12 +59,14 @@ class AuthController extends GetxController {
         if (uid != null) {
           await authStorage.write(Keys.authKey, uid);
           clearControllers();
-          Get.offNamed(Routes.profileScreen);
+
+          Get.snackbar('', 'تم تسجيل الدخول بنجاح ');
+          Get.offNamed(Routes.homeScreen);
         }
       },
       onError: (String e) {
         Get.snackbar(
-          'Login failed',
+          'الايميل او كلمة المرور غير صحيحة',
           e,
         );
       },
@@ -96,7 +99,6 @@ class AuthController extends GetxController {
 
   void visibility() {
     isVisibility = !isVisibility;
-    print(" hi  $isVisibility");
     update();
   }
 
