@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_template/core/db/firebase_instance.dart';
+import 'package:get/get.dart';
 
 class AuthService {
   signUpWithEmailFirebase({
@@ -37,8 +38,11 @@ class AuthService {
         email: email,
         password: password,
       );
-
-      onDone(credential.user?.uid);
+      if (FirebaseInstance.firebaseAuth.currentUser!.emailVerified) {
+        onDone(credential.user?.uid);
+      } else {
+        Get.snackbar('', 'الرجاء التوجه على بريدك الاكتروني و تفعيل الحساب');
+      }
     } on FirebaseAuthException catch (e) {
       onError(e.message.toString());
     }

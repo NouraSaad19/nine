@@ -1,6 +1,13 @@
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/core/constant/keys.dart';
+import 'package:flutter_template/core/route/route.dart';
 import 'package:flutter_template/feature/profile/service/profile_service.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ProfileController extends GetxController {
   final ProfileService _profileService = ProfileService();
@@ -9,6 +16,9 @@ class ProfileController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   String? profilePhoto = '';
+  GetStorage authStorage = GetStorage();
+  File? pickedFileApp;
+  bool isLoading = false;
 
   @override
   void onInit() async {
@@ -18,7 +28,6 @@ class ProfileController extends GetxController {
 
   getUserInfo() {
     var user = _profileService.getUserInfo(
-      uid: 'NH009G46nbfp8CQqcHBfpjnBgZF3',
       onError: (String e) {
         Get.snackbar(
           'something went wrong',
@@ -29,7 +38,64 @@ class ProfileController extends GetxController {
     nameController.text = user?.displayName ?? 'Hello user';
     emailController.text = user?.email ?? 'example@gmail.com';
     profilePhoto = user?.photoURL;
+  }
 
-    print('nameController.text ${nameController.text}');
+  updateUserName({required String userName}) async {
+    await _profileService.updateUserName(
+      //uid: authStorage.read(AppKeys.authKey),
+      userName: userName,
+      onError: (e) {
+        Get.snackbar('something went wrong', e.toString());
+      },
+      onDone: () {
+        Get.offNamed(Routes.profileScreen);
+      },
+    );
+  }
+
+  pickImage() async {
+    final result = await FilePicker.platform.pickFiles(type: FileType.image);
+    if (result != null) {
+      isLoading = true;
+      PlatformFile file = result.files.first;
+      pickedFileApp = File('${file.path}');
+      isLoading = false;
+      update();
+    } else {
+      Get.snackbar('', "You don't pick a image");
+    }
+  }
+
+  updateUserPhoto() async {
+    isLoading = true;
+    await _profileService.updateUserPhoto(
+        uid: authStorage.read(Keys.authKey),
+        pickedFile: pickedFileApp,
+        onError: (e) {
+          Get.snackbar('something went wrong', e.toString());
+          isLoading = false;
+        },
+        onDone: () {
+          getUserInfo();
+          isLoading = false;
+          update();
+          Get.snackbar('Photo is updated', "");
+        });
+  }
+
+  signOut() async {
+    await _profileService.signOut(
+      onError: (String e) {
+        Get.snackbar(
+          'something went wrong',
+          e,
+        );
+      },
+      onDone: () {
+        authStorage.remove(Keys.emailKey);
+        authStorage.remove(Keys.loginSaveKey);
+        Get.offAllNamed(Routes.loginScreen);
+      },
+    );
   }
 }
