@@ -19,6 +19,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetStorage authLogin = GetStorage();
+    bool isSign = authLogin.read('loginSave') ?? false;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: GestureDetector(
@@ -26,11 +28,12 @@ class MyApp extends StatelessWidget {
           FocusManager.instance.primaryFocus?.unfocus();
         },
         child: GetMaterialApp(
-            title: 'Nine',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeApp.lightTheme,
-            getPages: AppRoutes.routes,
-            initialRoute: Routes.splashScreen),
+          title: 'Nine',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeApp.lightTheme,
+          getPages: AppRoutes.routes,
+          initialRoute: isSign ? Routes.loginScreen : Routes.homeScreen,
+        ),
       ),
     );
   }

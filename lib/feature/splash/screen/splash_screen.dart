@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/extension/spaceing_extentsion.dart';
-import 'package:flutter_template/core/theme/app_colors.dart';
 import 'package:get/get.dart';
 import '../../../core/constant/app_image.dart';
 import '../controller/splash_controller.dart';

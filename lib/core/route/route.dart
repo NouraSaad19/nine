@@ -27,7 +27,7 @@ class AppRoutes {
     ),
     GetPage(
       name: Routes.homeScreen,
-      page: HomeScrenn.new,
+      page: HomeScreen.new,
       binding: Binding(),
     ),
     GetPage(

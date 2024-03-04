@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template/core/theme/app_colors.dart';
+import '../../core/theme/app_colors.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -39,6 +39,7 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+
     return TextFormField(
       maxLength: maxLength,
       enabled: enabled,
@@ -50,6 +51,7 @@ class TextFieldWidget extends StatelessWidget {
       cursorColor: AppColor.tiffanyColor,
       maxLines: 1,
       validator: validator,
+      obscureText: obscureText ?? false,
       decoration: InputDecoration(
         hintStyle: textTheme.labelMedium,
         hintText: hintText,
