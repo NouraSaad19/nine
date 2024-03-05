@@ -64,8 +64,6 @@ class HomeScreen extends StatelessWidget {
             ),
             const PostCardWidget(),
           ],
-
-
         ),
       ),
       //   ),
