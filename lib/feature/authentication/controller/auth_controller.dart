@@ -16,7 +16,8 @@ class AuthController extends GetxController {
 
   GetStorage authStorage = GetStorage();
 
-  bool isCheck = false;
+  bool isCheck = true;
+
   bool isVisibility = true;
   bool isVisibilityPassword = true;
   bool isVisibilityConfirm = true;

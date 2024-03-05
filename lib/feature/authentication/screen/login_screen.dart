@@ -309,18 +309,23 @@ class LoginScreen extends StatelessWidget {
                     elevation: 10,
                     shadowColor: AppColor.whiteColor,
                     child: TextFieldWidget(
-                        controller: authController.emailController,
-                        hintText: 'البريد الاكتروني',
-                        prefixIcon: const Icon(Icons.email_outlined),
-                        validator: (value) {
-                          if (value.toString().isEmpty) {
-                            return 'لم تقم بإدخال أي قيمة';
-                          } else if (!Validation.isValidEmailExtension(value)) {
-                            return 'يجب ان يكون الايميل ايميل الكراج';
-                          } else {
-                            return null;
-                          }
-                        }),
+                      controller: authController.emailController,
+                      hintText: 'البريد الإلكتروني',
+                      prefixIcon: const Icon(Icons.email_outlined),
+                      validator: (value) {
+                        if (value.toString().isEmpty) {
+                          return 'لم تقم بإدخال أي قيمة';
+                        } else if (!Validation.isValidEmailExtension(value)) {
+                          return 'يجب أن يكون البريد الإلكتروني بريد الكراج';
+                        } else if (!value.toString().contains('@')) {
+                          return 'البريد الإلكتروني يجب أن يحتوي على علامة @';
+                        } else if (value.toString().length < 5) {
+                          return 'البريد الإلكتروني قصير جداً';
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
                   ),
                   SizedBox(
                     height: 0.02369.height(context),
@@ -345,13 +350,11 @@ class LoginScreen extends StatelessWidget {
                       ),
                       validator: (value) {
                         if (value.toString().isEmpty) {
-                          return 'لم تقم بإدخال أي قيمة';
-                        } else if (value !=
-                            authController.passwordController.text) {
-                          return ' ';
-                        } else {
-                          return null;
+                          return 'لم تقم بإدخال ;كلمة المرور ';
+                        } else if (value.length < 6) {
+                          return 'كلمة المرور يجب أن تكون على الأقل 6 أحرف';
                         }
+                        return null;
                       },
                     ),
                   ),
@@ -429,6 +432,7 @@ class LoginScreen extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       Get.toNamed(Routes.singUpScreen);
+                      authController.clearControllers();
                     },
                     child: Text(
                       'للتسجيل معانا',

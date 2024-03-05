@@ -30,7 +30,6 @@ ThemeData lightThemeData() {
         statusBarBrightness: Brightness.light,
       ),),
 
-
     // FloatingActionButtonThemeData
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppColor.greyColor.shade200,

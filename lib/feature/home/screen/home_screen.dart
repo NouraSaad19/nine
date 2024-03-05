@@ -7,6 +7,9 @@ import '../../../core/route/route.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../profile/controller/profile_controller.dart';
 
+
+
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -48,12 +51,9 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        focusColor: AppColor.orangeColor,
-        onPressed: () {},
-        child: const Icon(Icons.post_add),
-      ),
-      body: SingleChildScrollView(
+
+
+
         child: Center(
           child: Column(
             children: [
@@ -72,6 +72,7 @@ class HomeScreen extends StatelessWidget {
               const PostCardWidget(),
             ],
           ),
+
         ),
       ),
     );
