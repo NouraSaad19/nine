@@ -22,6 +22,14 @@ ThemeData lightThemeData() {
       color: AppColor.tiffanyColor,
     ),
 
+    appBarTheme: AppBarTheme(
+      color: AppColor.greyBackgroundColor,
+      systemOverlayStyle:SystemUiOverlayStyle(
+        statusBarColor: AppColor.greyBackgroundColor,
+        statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+        statusBarBrightness: Brightness.light,
+      ),),
+
     // FloatingActionButtonThemeData
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppColor.greyColor.shade200,

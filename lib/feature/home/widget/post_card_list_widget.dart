@@ -12,7 +12,7 @@ class PostListWidget extends StatelessWidget {
       return ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: 10,
+        itemCount: 2,
         itemBuilder: ((context, index) {
           return const PostCardWidget(
 

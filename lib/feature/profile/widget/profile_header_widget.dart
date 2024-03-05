@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/core/constant/app_image.dart';
 import 'package:flutter_template/core/theme/app_colors.dart';
+import 'package:get/get.dart';
+
 
 class ProfileHeaderWidget extends StatelessWidget {
   final Function() onPressed;
@@ -19,6 +20,8 @@ class ProfileHeaderWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: 90, right: 30, left: 130),
       child: Row(
         children: [
+       IconButton(
+      onPressed: Get.back, icon: const Icon(Icons.arrow_back_ios),),
           Text(
             title,
             style: textTheme.headlineMedium,
