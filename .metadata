@@ -5,6 +5,7 @@
 
 version:
 <<<<<<< HEAD
+<<<<<<< HEAD
   revision: "7482962148e8d758338d8a28f589f317e1e42ba4"
 =======
 <<<<<<< HEAD
@@ -13,6 +14,9 @@ version:
   revision: "67457e669f79e9f8d13d7a68fe09775fefbb79f4"
 >>>>>>> ea3c546 (home)
 >>>>>>> 57022d8 (home)
+=======
+  revision: "7482962148e8d758338d8a28f589f317e1e42ba4"
+>>>>>>> 23c5f79 (home featuer hold ui)
   channel: "stable"
 
 project_type: app
@@ -22,6 +26,7 @@ migration:
   platforms:
     - platform: root
 <<<<<<< HEAD
+<<<<<<< HEAD
       create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
       base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
 =======
@@ -29,6 +34,10 @@ migration:
       create_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
       base_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
 >>>>>>> 57022d8 (home)
+=======
+      create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
+      base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
+>>>>>>> 23c5f79 (home featuer hold ui)
     - platform: android
       create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
       base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
@@ -45,6 +54,7 @@ migration:
       create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
       base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
     - platform: windows
+<<<<<<< HEAD
 <<<<<<< HEAD
       create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
       base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
@@ -74,6 +84,10 @@ migration:
       base_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
 >>>>>>> ea3c546 (home)
 >>>>>>> 57022d8 (home)
+=======
+      create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
+      base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
+>>>>>>> 23c5f79 (home featuer hold ui)
 
   # User provided section
 
