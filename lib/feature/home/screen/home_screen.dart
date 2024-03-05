@@ -4,11 +4,7 @@ import 'package:flutter_template/feature/home/widget/post_card_widget.dart';
 import 'package:get/get.dart';
 import '../../../common/widget/logo_home_widget.dart';
 import '../../../core/route/route.dart';
-import '../../../core/theme/app_colors.dart';
 import '../../profile/controller/profile_controller.dart';
-
-
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -52,29 +48,25 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
 
-
-
-        child: Center(
-          child: Column(
-            children: [
-              //  const LogoHomeWidget(),
-              Center(
-                child: Text('مجلس تسعة ',
-                    textAlign: TextAlign.center,
-                    style: textTheme.headlineLarge),
-              ),
-              const SizedBox(
-                width: 70,
-              ),
-              const SizedBox(
-                height: 37,
-              ),
-              const PostCardWidget(),
-            ],
-          ),
-
+      body: Center(
+        child: Column(
+          children: [
+            //  const LogoHomeWidget(),
+            Center(
+              child: Text('مجلس تسعة ',
+                  textAlign: TextAlign.center, style: textTheme.headlineLarge),
+            ),
+            const SizedBox(
+              width: 70,
+            ),
+            const SizedBox(
+              height: 37,
+            ),
+            const PostCardWidget(),
+          ],
         ),
       ),
+      //   ),
     );
   }
 }
