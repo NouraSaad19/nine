@@ -21,8 +21,16 @@ class LogoHomeWidget extends StatelessWidget {
               width: 0.18.width(context),
               child: Stack(
                 children: [
-                  for (double left in [0, 14.84, 29.69])
-                    for (double top in [0, 15.54, 31.07])
+                  for (double left in [
+                    0,
+                    14.84,
+                    29.69
+                  ])
+                    for (double top in [
+                      0,
+                      15.54,
+                      31.07
+                    ])
                       Positioned(
                         left: left,
                         top: top,

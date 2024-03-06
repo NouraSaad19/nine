@@ -17,7 +17,6 @@ class AuthController extends GetxController {
   GetStorage authStorage = GetStorage();
 
   bool isCheck = true;
-
   bool isVisibility = true;
   bool isVisibilityPassword = true;
   bool isVisibilityConfirm = true;
@@ -81,11 +80,10 @@ class AuthController extends GetxController {
     confirmPasswordController.clear();
   }
 
-  void updateCheckBox(bool value) {
-    isCheck = value;
+  void updateCheckBox() {
+    isCheck = !isCheck;
     update();
   }
-
   void visibility() {
     isVisibility = !isVisibility;
     update();
