@@ -40,12 +40,16 @@ class ProfileController extends GetxController {
 
   updateUserName({required String userName}) async {
     await _profileService.updateUserName(
-      //uid: authStorage.read(AppKeys.authKey),
       userName: userName,
       onError: (e) {
         Get.snackbar('something went wrong', e.toString());
       },
-      onDone: () {
+      onDone: () async {
+        await getUserInfo();
+        //nameController.text = userName;
+        print('update username ');
+        print('nameController.text ${nameController.text}');
+        update();
         Get.offNamed(Routes.profileScreen);
       },
     );
@@ -65,7 +69,7 @@ class ProfileController extends GetxController {
   }
 
   updateUserPhoto() async {
-    isLoading = true;
+    pickedFileApp == null ? isLoading = false : true;
     await _profileService.updateUserPhoto(
         uid: authStorage.read(Keys.authKey),
         pickedFile: pickedFileApp,
@@ -73,7 +77,7 @@ class ProfileController extends GetxController {
           Get.snackbar('something went wrong', e.toString());
           isLoading = false;
         },
-        onDone: () {
+        onDone: () async {
           getUserInfo();
           isLoading = false;
           update();

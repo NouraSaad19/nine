@@ -408,19 +408,19 @@ class LoginScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          if (!authController.isCheck) {
-                            String? uid = await authController.loginWithEmail(
-                                authController.emailController.text,
-                                authController.passwordController.text);
-                            if (uid != null) {
-                              authController.loginWithGetStorage(
-                                authController.emailController.text,
-                                authController.passwordController.text,
-                                true,
-                              );
-                            }
-                          }
+                          // if (!authController.isCheck) {
+                          // String? uid =
+                          await authController.loginWithEmail(
+                              authController.emailController.text,
+                              authController.passwordController.text);
+                          // if (uid != null) {
+                          //   authController.loginWithGetStorage(
+                          //     authController.emailController.text,
+                          //     true,
+                          //   );
+                          // }
                         }
+                        // }
                       },
                       child: Text(
                         'الدخول',

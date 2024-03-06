@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/common/widget/text_field_widget.dart';
 import 'package:flutter_template/core/theme/app_colors.dart';
 import 'package:flutter_template/feature/profile/controller/profile_controller.dart';
-
+import 'package:get/get.dart';
 
 class EditUserNameWidget extends StatelessWidget {
   const EditUserNameWidget({super.key, required this.profileController});
@@ -21,13 +21,15 @@ class EditUserNameWidget extends StatelessWidget {
             width: 200,
             height: 50,
             child: Material(
-              elevation: 10,
-              shadowColor: AppColor.greyColor.shade300,
-              child: TextFieldWidget(
-                controller: profileController.nameController,
-                hintText: 'الاسم',
-              ),
-            ),
+                elevation: 10,
+                shadowColor: AppColor.greyColor.shade300,
+                child:
+                    GetBuilder<ProfileController>(builder: (profileController) {
+                  return TextFieldWidget(
+                    controller: profileController.nameController,
+                    hintText: 'الاسم',
+                  );
+                })),
           ),
           const SizedBox(
             width: 20,

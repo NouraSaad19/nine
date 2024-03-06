@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/firebase_options.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'core/route/route.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeApp.lightTheme,
           getPages: AppRoutes.routes,
-          initialRoute: isSign ? Routes.loginScreen : Routes.homeScreen,
+          initialRoute: isSign ? Routes.homeScreen : Routes.loginScreen,
         ),
       ),
     );

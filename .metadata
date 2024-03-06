@@ -4,19 +4,7 @@
 # This file should be version controlled and should not be manually edited.
 
 version:
-<<<<<<< HEAD
-<<<<<<< HEAD
-  revision: "7482962148e8d758338d8a28f589f317e1e42ba4"
-=======
-<<<<<<< HEAD
   revision: "bae5e49bc2a867403c43b2aae2de8f8c33b037e4"
-=======
-  revision: "67457e669f79e9f8d13d7a68fe09775fefbb79f4"
->>>>>>> ea3c546 (home)
->>>>>>> 57022d8 (home)
-=======
-  revision: "7482962148e8d758338d8a28f589f317e1e42ba4"
->>>>>>> 23c5f79 (home featuer hold ui)
   channel: "stable"
 
 project_type: app
@@ -25,69 +13,26 @@ project_type: app
 migration:
   platforms:
     - platform: root
-<<<<<<< HEAD
-<<<<<<< HEAD
-      create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-      base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-=======
-<<<<<<< HEAD
       create_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
       base_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
->>>>>>> 57022d8 (home)
-=======
-      create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-      base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
->>>>>>> 23c5f79 (home featuer hold ui)
     - platform: android
-      create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-      base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-    - platform: ios
-      create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-      base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-    - platform: linux
-      create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-      base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-    - platform: macos
-      create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-      base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-    - platform: web
-      create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-      base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-    - platform: windows
-<<<<<<< HEAD
-<<<<<<< HEAD
-      create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-      base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-=======
       create_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
       base_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
-=======
-      create_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
-      base_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
-    - platform: android
-      create_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
-      base_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
     - platform: ios
-      create_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
-      base_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
+      create_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
+      base_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
     - platform: linux
-      create_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
-      base_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
+      create_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
+      base_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
     - platform: macos
-      create_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
-      base_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
+      create_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
+      base_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
     - platform: web
-      create_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
-      base_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
+      create_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
+      base_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
     - platform: windows
-      create_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
-      base_revision: 67457e669f79e9f8d13d7a68fe09775fefbb79f4
->>>>>>> ea3c546 (home)
->>>>>>> 57022d8 (home)
-=======
-      create_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
-      base_revision: 7482962148e8d758338d8a28f589f317e1e42ba4
->>>>>>> 23c5f79 (home featuer hold ui)
+      create_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
+      base_revision: bae5e49bc2a867403c43b2aae2de8f8c33b037e4
 
   # User provided section
 

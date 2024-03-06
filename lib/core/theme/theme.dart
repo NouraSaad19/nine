@@ -23,12 +23,16 @@ ThemeData lightThemeData() {
     ),
 
     appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(
+        color: AppColor.tiffanyColor,
+      ),
       color: AppColor.greyBackgroundColor,
-      systemOverlayStyle:SystemUiOverlayStyle(
+      systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: AppColor.greyBackgroundColor,
         statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
         statusBarBrightness: Brightness.light,
-      ),),
+      ),
+    ),
 
     // FloatingActionButtonThemeData
     floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -45,7 +49,6 @@ ThemeData lightThemeData() {
         borderRadius: BorderRadius.circular(40),
       ),
     ),
-
 
     //ElevatedButtonThemeData
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -65,7 +68,6 @@ ThemeData lightThemeData() {
     )),
 
     inputDecorationTheme: InputDecorationTheme(
-   
       contentPadding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10),
       fillColor: AppColor.greyColor.shade200,
       prefixIconColor: AppColor.tiffanyColor,
