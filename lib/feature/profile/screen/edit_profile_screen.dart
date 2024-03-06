@@ -4,27 +4,39 @@ import 'package:flutter_template/core/route/route.dart';
 import 'package:flutter_template/core/theme/app_colors.dart';
 import 'package:flutter_template/feature/profile/controller/profile_controller.dart';
 import 'package:flutter_template/feature/profile/widget/edit_user_name_widget.dart';
-import 'package:flutter_template/feature/profile/widget/profile_header_widget.dart';
+import 'package:flutter_template/feature/profile/widget/icon_widget.dart';
 import 'package:get/get.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  EditProfileScreen({super.key});
-  //final profileController = Get.find<ProfileController>();
+  const EditProfileScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return GetBuilder<ProfileController>(builder: (profileController) {
       return Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              ProfileHeaderWidget(
-                title: 'تعديل الصفحة الشخصية',
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text(
+            'تعديل الصفحة الشخصية',
+            style: textTheme.headlineMedium,
+          ),
+          toolbarHeight: 100,
+          actions: [
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 15),
+              child: IconWidget(
                 onPressed: () {
                   Get.toNamed(Routes.profileScreen);
                 },
                 icon: Icons.arrow_forward_ios_outlined,
               ),
+            )
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
               const SizedBox(
                 height: 57,
               ),
@@ -95,9 +107,10 @@ class EditProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 32, left: 20),
                 child: ElevatedButton(
                   onPressed: () async {
-                    await profileController.updateUserPhoto();
+                    //await profileController.updateUserPhoto();
                     await profileController.updateUserName(
                         userName: profileController.nameController.text);
+                    print("screen ${profileController.nameController.text}");
                   },
                   child: Text(
                     'حفظ',
@@ -105,6 +118,15 @@ class EditProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 100,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(height: 100, child: Image.asset(AppImage.groupImage))
+                ],
+              )
             ],
           ),
         ),

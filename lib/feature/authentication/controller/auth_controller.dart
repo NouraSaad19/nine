@@ -58,8 +58,9 @@ class AuthController extends GetxController {
       onDone: (String? uid) async {
         if (uid != null) {
           await authStorage.write(Keys.authKey, uid);
+          await GetStorage().write(Keys.emailKey, email);
+          await GetStorage().write(Keys.loginSaveKey, true);
           clearControllers();
-
           Get.snackbar('', 'تم تسجيل الدخول بنجاح ');
           Get.offNamed(Routes.homeScreen);
         }
@@ -72,18 +73,6 @@ class AuthController extends GetxController {
       },
     );
   }
-
-  void loginWithGetStorage(String email, String password, bool isSignIn) async {
-    await GetStorage().write(Keys.emailKey, email);
-    await GetStorage().write(Keys.loginSaveKey, isSignIn);
-    update();
-  }
-
-  // void logOut() async {
-  //   await storage.remove(Keys.emailKey);
-  //   await storage.remove(Keys.loginSaveKey);
-  //   update();
-  // }
 
   clearControllers() {
     nameController.clear();

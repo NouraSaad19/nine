@@ -20,16 +20,13 @@ class ProfileService {
   }
 
   Future<void> updateUserName({
-    //required String uid,
     required String userName,
     required Function() onDone,
     required Function(String? error) onError,
   }) async {
     try {
-      //if (uid.isNotEmpty) {
       await user?.updateDisplayName(userName);
       onDone();
-      // }
     } on FirebaseException catch (e) {
       onError(e.message);
     }
