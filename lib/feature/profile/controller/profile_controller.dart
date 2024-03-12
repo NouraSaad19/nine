@@ -26,15 +26,13 @@ class ProfileController extends GetxController {
 
   getUserInfo() {
     var user = _profileService.getUserInfo(
-      onError: (String e) {
-        Get.snackbar(
-          'something went wrong',
-          e,
-        );
+      uid: authStorage.read(Keys.authKey),
+      onError: (e) {
+        Get.snackbar('something went wrong', e.toString());
       },
     );
     nameController.text = user?.displayName ?? 'Hello user';
-    emailController.text = user?.email ?? 'example@gmail.com';
+    emailController.text = user?.email ?? 'example@thegarage.sa';
     profilePhoto = user?.photoURL;
   }
 
@@ -45,10 +43,6 @@ class ProfileController extends GetxController {
         Get.snackbar('something went wrong', e.toString());
       },
       onDone: () async {
-        await getUserInfo();
-        //nameController.text = userName;
-        print('update username ');
-        print('nameController.text ${nameController.text}');
         update();
         Get.offNamed(Routes.profileScreen);
       },
@@ -69,7 +63,7 @@ class ProfileController extends GetxController {
   }
 
   updateUserPhoto() async {
-    pickedFileApp == null ? isLoading = false : true;
+    isLoading = true;
     await _profileService.updateUserPhoto(
         uid: authStorage.read(Keys.authKey),
         pickedFile: pickedFileApp,
@@ -77,7 +71,7 @@ class ProfileController extends GetxController {
           Get.snackbar('something went wrong', e.toString());
           isLoading = false;
         },
-        onDone: () async {
+        onDone: () {
           getUserInfo();
           isLoading = false;
           update();

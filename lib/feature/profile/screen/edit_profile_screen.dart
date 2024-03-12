@@ -6,6 +6,7 @@ import 'package:flutter_template/feature/profile/controller/profile_controller.d
 import 'package:flutter_template/feature/profile/widget/edit_user_name_widget.dart';
 import 'package:flutter_template/feature/profile/widget/icon_widget.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
@@ -42,17 +43,10 @@ class EditProfileScreen extends StatelessWidget {
               ),
               Stack(children: [
                 profileController.isLoading
-                    ? Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: AppColor.whiteColor,
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: AssetImage(AppImage.logoImage),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+                    ? SizedBox(
+                        height: 150,
+                        width: 150,
+                        child: Lottie.asset('assets/images/loading.json'),
                       )
                     : Container(
                         height: 150,
@@ -61,12 +55,9 @@ class EditProfileScreen extends StatelessWidget {
                           color: AppColor.whiteColor,
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: profileController.profilePhoto == null
-                                ? AssetImage(AppImage.profilePhotoImage)
-                                    as ImageProvider
-                                : NetworkImage(
-                                    profileController.profilePhoto!,
-                                  ),
+                            image: NetworkImage(
+                              profileController.profilePhoto!,
+                            ),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -77,7 +68,7 @@ class EditProfileScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: () async {
                         await profileController.pickImage();
-                        // await profileController.updateUserPhoto();
+                        await profileController.updateUserPhoto();
                       },
                       child: Container(
                         height: 30,
@@ -107,10 +98,8 @@ class EditProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 32, left: 20),
                 child: ElevatedButton(
                   onPressed: () async {
-                    //await profileController.updateUserPhoto();
                     await profileController.updateUserName(
                         userName: profileController.nameController.text);
-                    print("screen ${profileController.nameController.text}");
                   },
                   child: Text(
                     'حفظ',

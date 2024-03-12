@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_template/core/constant/app_image.dart';
 import 'package:flutter_template/core/route/route.dart';
 import 'package:flutter_template/core/theme/app_colors.dart';
@@ -55,20 +53,6 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(
                   height: 57,
                 ),
-                // profileController.isLoading
-                //     ? Container(
-                //         height: 100,
-                //         width: 100,
-                //         decoration: BoxDecoration(
-                //           color: Colors.amber,
-                //           shape: BoxShape.circle,
-                //           image: DecorationImage(
-                //             image: AssetImage(AppImage.logoImage),
-                //             fit: BoxFit.fill,
-                //           ),
-                //         ),
-                //       )
-                //     :
                 Container(
                   height: 150,
                   width: 150,

@@ -11,22 +11,42 @@ class PersonalInformationWidget extends StatelessWidget {
       padding: const EdgeInsets.only(right: 80),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                profileController.nameController.text,
-                style: textTheme.labelMedium,
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Text(
-                ' الاسم',
-                style: textTheme.labelMedium,
-              ),
-            ],
-          ),
+          profileController.emailController.text == 'n.alnafea@thegarage.sa' ||
+                  profileController.emailController.text ==
+                      'a.almohammadi.thegarage.sa'
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Icon(Icons.star_outlined),
+                    Text(
+                      profileController.nameController.text,
+                      style: textTheme.labelMedium,
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      ' الاسم',
+                      style: textTheme.labelMedium,
+                    ),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      profileController.nameController.text,
+                      style: textTheme.labelMedium,
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      ' الاسم',
+                      style: textTheme.labelMedium,
+                    ),
+                  ],
+                ),
           const SizedBox(
             height: 20,
           ),

@@ -48,14 +48,16 @@ class AuthService {
     }
   }
 
-// forgotPassword({
-//   required String email,
-//   required Function(String e) onError,
-// }) async {
-//   try {
-//     await FirebaseInstance.firebaseAuth.sendPasswordResetEmail(email: email);
-//   } on FirebaseAuthException catch (e) {
-//     onError(e.message.toString());
-//   }
-// }
+  forgotPassword({
+    required String email,
+    required Function() onDone,
+    required Function(String e) onError,
+  }) async {
+    try {
+      await FirebaseInstance.firebaseAuth.sendPasswordResetEmail(email: email);
+      onDone();
+    } on FirebaseAuthException catch (e) {
+      onError(e.message.toString());
+    }
+  }
 }
