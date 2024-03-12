@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/common/widget/logo_widget.dart';
 import 'package:flutter_template/core/constant/validation.dart';
 import 'package:flutter_template/core/extension/spaceing_extentsion.dart';
-import 'package:flutter_template/feature/authentication/widget/forget_password_widget.dart';
+import 'package:flutter_template/feature/authentication/screen/forget_password_widget.dart';
 import 'package:get/get.dart';
 import '../../../common/widget/text_field_widget.dart';
 import '../../../core/route/route.dart';
@@ -390,7 +390,7 @@ class LoginScreen extends StatelessWidget {
                           Get.bottomSheet(
                               ignoreSafeArea: false,
                               isScrollControlled: true,
-                              const ForgetPassWordWidget());
+                              ForgetPassWordWidget());
                         },
                         child: Text(
                           ' هل نسيت كلمة المرور ؟  ',

@@ -100,4 +100,20 @@ class AuthController extends GetxController {
     isVisibilityConfirm = !isVisibilityConfirm;
     update();
   }
+
+  forgotPassword(String email) async {
+    await _authService.forgotPassword(
+      email: email,
+      onError: (String e) {
+        Get.snackbar(
+          'something went wrong',
+          e,
+        );
+      },
+      onDone: () {
+        Get.offNamed(Routes.loginScreen);
+        Get.snackbar('', 'تم ارسال ايميل لاعاده تعين كلمه المرور ');
+      },
+    );
+  }
 }

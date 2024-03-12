@@ -4,18 +4,21 @@ import 'package:flutter_template/core/db/firebase_instance.dart';
 
 class ProfileService {
   User? user = FirebaseInstance.firebaseAuth.currentUser;
-  UserModel? getUserInfo({
-    required Function(String e) onError,
-  }) {
+
+  UserModel? getUserInfo(
+      {required String uid, required Function(String? error) onError}) {
     try {
-      return UserModel(
-        id: user?.uid,
-        email: user?.email,
-        displayName: user?.displayName,
-        photoURL: user?.photoURL,
-      );
+      final user = FirebaseInstance.firebaseAuth.currentUser;
+      if (uid.isNotEmpty) {
+        return UserModel(
+          id: user?.uid,
+          email: user?.email,
+          displayName: user?.displayName,
+          photoURL: user?.photoURL,
+        );
+      }
     } on FirebaseException catch (e) {
-      onError(e.message.toString());
+      onError(e.message);
     }
   }
 
