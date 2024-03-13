@@ -6,8 +6,7 @@ import '../model/post_model.dart';
 import '../service/post_service.dart';
 
 class PostController extends GetxController {
-  final TextEditingController postTextEditingController =
-      TextEditingController();
+  final TextEditingController postTextEditingController = TextEditingController();
   final PostService homeService = PostService();
   final GetStorage authStorage = GetStorage();
 
@@ -31,15 +30,18 @@ class PostController extends GetxController {
         isLoading = true;
         update();
 
-        String? imageUrl = await homeService.uploadImage(
+        String? imageUrl = await homeService.uploadImagePost(
           pickedFile: pickedFile,
-          uid: post.uid,
+          postId: post.uid,
         );
+        print("pickedFile $pickedFile");
 
         if (imageUrl != null) {
-          post.imageUrl = imageUrl;
+         // post.imageUrl = imageUrl;
+          print(imageUrl);
+          print(post.imageUrl);
         } else {
-          // print('Failed to upload image from controller ${post.imageUrl}');
+          print(" null ");
         }
       }
 
