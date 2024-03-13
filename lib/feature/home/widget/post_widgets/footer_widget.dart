@@ -76,11 +76,13 @@ class FooterWritePostWidget extends StatelessWidget {
                       minimumSize: const Size(100, 35),
                     ),
                     onPressed: () {
-                      final String postText = postController.postTextEditingController.text;
+                      final String postText =
+                          postController.postTextEditingController.text;
                       print("${postController.postTextEditingController.text}");
                       if (postText.isNotEmpty) {
                         String? imagePath =
                             profileController.pickedFileApp?.path;
+
                         postController.addPost(
                           PostModel(
                             uid: postController.authStorage.read(Keys.authKey),
@@ -97,11 +99,8 @@ class FooterWritePostWidget extends StatelessWidget {
                     },
                     child: Text('مشاركة', style: textTheme.displayMedium),
                   ),
-
                 ],
               ),
-
-
             );
           },
         );
