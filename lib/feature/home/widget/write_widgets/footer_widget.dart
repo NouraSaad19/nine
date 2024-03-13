@@ -74,12 +74,10 @@ class FooterWritePostWidget extends StatelessWidget {
                     ),
                     onPressed: () {
                       final String postText =
-                         postController.postTextEditingController.text;
+                          postController.postTextEditingController.text;
                       if (postText.isNotEmpty) {
                         String? imagePath =
                             profileController.pickedFileApp?.path;
-                        // print(
-                        //     " profileController.pickedFileApp?.path; $profileController.pickedFileApp?.path;");
 
                         postController.addPost(
                           PostModel(
@@ -88,12 +86,10 @@ class FooterWritePostWidget extends StatelessWidget {
                             imageUrl: imagePath,
                           ),
                           pickedFile: profileController.pickedFileApp,
-
                         );
                         postController.clearController();
                         profileController.clearPickedFile();
                         Get.back();
-                        // print(" { $imagePath,} ");
                       }
                     },
                     child: Text('مشاركة', style: textTheme.displayMedium),

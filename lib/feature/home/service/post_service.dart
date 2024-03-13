@@ -18,9 +18,9 @@ class PostService {
     required Function(String e) onError,
   }) async {
     try {
-      String? imageUrl = await uploadImage(
+      String? imageUrl = await uploadImagePost(
         pickedFile: pickedFile,
-        uid: post.uid,
+        postId: post.uid,
       );
       post.imageUrl = imageUrl!;
 
@@ -36,14 +36,16 @@ class PostService {
     }
   }
 
-  Future<String?> uploadImage({
-    required pickedFile,
-    required String? uid,
+  Future<String?> uploadImagePost({
+    required File pickedFile,
+    required String? postId,
   }) async {
     try {
       String imageUrl = '';
       if (pickedFile != null) {
-        final ref = FirebaseInstance.firebaseStorage.ref().child('$uid.jpg');
+        final ref = FirebaseInstance.firebaseStorage
+            .ref()
+            .child('post_images/$postId.jpg');
         await ref.putFile(pickedFile);
         imageUrl = await ref.getDownloadURL();
       }
@@ -74,6 +76,3 @@ class PostService {
     }
   }
 }
-
-
-
