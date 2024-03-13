@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/constant/app_image.dart';
 import 'package:flutter_template/feature/home/widget/post_list_widget.dart';
@@ -9,7 +10,6 @@ import '../../profile/controller/profile_controller.dart';
 import '../controller/post_controller.dart';
 
 class HomeScreen extends StatelessWidget {
-
   const HomeScreen({super.key});
 
   @override
@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
           Get.bottomSheet(
               ignoreSafeArea: false,
               isScrollControlled: true,
-               WritePostWidget());
+              WritePostWidget());
         },
         child: const Icon(Icons.post_add),
       ),
@@ -64,28 +64,26 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Center(
-          child: GetBuilder<PostController>(
-            builder: (postController) {
-              return GetBuilder<PostController>(builder: (profileController) {
-                return Column(
-                  children: [
-                    Center(
-                      child: Text('مجلس تسعة ',
-                          textAlign: TextAlign.center,
-                          style: textTheme.headlineLarge),
-                    ),
-                    const SizedBox(
-                      width: 70,
-                    ),
-                    const SizedBox(
-                      height: 37,
-                    ),
-                    const PostListWidget(),
-                  ],
-                );
-              });
-            }
-          ),
+          child: GetBuilder<PostController>(builder: (postController) {
+            return GetBuilder<PostController>(builder: (profileController) {
+              return Column(
+                children: [
+                  Center(
+                    child: Text('مجلس تسعة ',
+                        textAlign: TextAlign.center,
+                        style: textTheme.headlineLarge),
+                  ),
+                  const SizedBox(
+                    width: 70,
+                  ),
+                  const SizedBox(
+                    height: 37,
+                  ),
+                  const PostListWidget(),
+                ],
+              );
+            });
+          }),
         ),
       ),
       //   ),
