@@ -13,6 +13,7 @@ class ProfileController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+
   String? profilePhoto = '';
   GetStorage authStorage = GetStorage();
   File? pickedFileApp;
@@ -22,6 +23,11 @@ class ProfileController extends GetxController {
   void onInit() async {
     await getUserInfo();
     super.onInit();
+  }
+
+  void clearPickedFile() {
+    pickedFileApp = null;
+    update();
   }
 
   getUserInfo() {
@@ -43,6 +49,11 @@ class ProfileController extends GetxController {
         Get.snackbar('something went wrong', e.toString());
       },
       onDone: () async {
+
+        await getUserInfo();
+        //nameController.text = userName;
+        // print('update username ');
+        // print('nameController.text ${nameController.text}');
         update();
         Get.offNamed(Routes.profileScreen);
       },

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/constant/app_image.dart';
-import 'package:flutter_template/feature/home/widget/post_card_widget.dart';
+import 'package:flutter_template/feature/home/widget/post_list_widget.dart';
+import 'package:flutter_template/feature/home/widget/write_widgets/write_post_widget.dart';
 import 'package:get/get.dart';
 import '../../../common/widget/logo_home_widget.dart';
 import '../../../core/route/route.dart';
 import '../../profile/controller/profile_controller.dart';
+import '../controller/post_controller.dart';
 
 class HomeScreen extends StatelessWidget {
+
   const HomeScreen({super.key});
 
   @override
@@ -47,23 +50,42 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.back();
+          Get.bottomSheet(
+              ignoreSafeArea: false,
+              isScrollControlled: true,
+               WritePostWidget());
+        },
+        child: const Icon(Icons.post_add),
+      ),
 
-      body: Center(
-        child: Column(
-          children: [
-            //  const LogoHomeWidget(),
-            Center(
-              child: Text('مجلس تسعة ',
-                  textAlign: TextAlign.center, style: textTheme.headlineLarge),
-            ),
-            const SizedBox(
-              width: 70,
-            ),
-            const SizedBox(
-              height: 37,
-            ),
-            const PostCardWidget(),
-          ],
+      body: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Center(
+          child: GetBuilder<PostController>(
+            builder: (postController) {
+              return GetBuilder<PostController>(builder: (profileController) {
+                return Column(
+                  children: [
+                    Center(
+                      child: Text('مجلس تسعة ',
+                          textAlign: TextAlign.center,
+                          style: textTheme.headlineLarge),
+                    ),
+                    const SizedBox(
+                      width: 70,
+                    ),
+                    const SizedBox(
+                      height: 37,
+                    ),
+                    const PostListWidget(),
+                  ],
+                );
+              });
+            }
+          ),
         ),
       ),
       //   ),
