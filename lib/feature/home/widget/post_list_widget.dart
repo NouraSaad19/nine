@@ -14,7 +14,9 @@ class PostListWidget extends StatelessWidget {
         shrinkWrap: true,
         itemCount: controller.posts.length,
         itemBuilder: ((context, index) {
-          return PostCardWidget(post: controller.posts[index],);
+          return PostCardWidget(
+            post: controller.posts[index],
+          );
         }),
       );
     });

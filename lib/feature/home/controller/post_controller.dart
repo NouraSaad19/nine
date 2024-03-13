@@ -6,7 +6,8 @@ import '../model/post_model.dart';
 import '../service/post_service.dart';
 
 class PostController extends GetxController {
-  final TextEditingController postTextEditingController = TextEditingController();
+  final TextEditingController postTextEditingController =
+      TextEditingController();
   final PostService homeService = PostService();
   final GetStorage authStorage = GetStorage();
 
@@ -20,48 +21,27 @@ class PostController extends GetxController {
   }
 
   Future<void> fetchData() async {
+    posts.clear();
     posts = await homeService.getPosts();
     update();
   }
 
   Future<void> addPost(PostModel post, {required File? pickedFile}) async {
     try {
-      if (pickedFile != null) {
-        isLoading = true;
-        update();
-
-        String? imageUrl = await homeService.uploadImagePost(
-          pickedFile: pickedFile,
-          postId: post.uid,
-        );
-        print("pickedFile $pickedFile");
-
-        if (imageUrl != null) {
-         // post.imageUrl = imageUrl;
-          print(imageUrl);
-          print(post.imageUrl);
-        } else {
-          print(" null ");
-        }
-      }
-
       await homeService.addPost(
         post: post,
         pickedFile: pickedFile!,
         onDone: () {
-          print("Post added: ${post.uid}");
           fetchData();
         },
         onError: (e) {
           isLoading = false;
           update();
-          print('Error adding post: $e');
         },
       );
     } catch (e) {
       isLoading = false;
       update();
-      print('Error adding post: $e');
     }
   }
 

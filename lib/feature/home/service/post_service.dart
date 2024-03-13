@@ -18,18 +18,14 @@ class PostService {
     required Function(String e) onError,
   }) async {
     try {
-      String? imageUrl = await uploadImagePost(
+      final postRef = FirebaseInstance.fireStore.collection('posts').doc();
+      post.postId = postRef.id;
+      String? image = await uploadImagePost(
         pickedFile: pickedFile,
-        postId: post.uid,
+        postId: post.postId,
       );
-      post.imageUrl = imageUrl!;
-
-      await FirebaseInstance.fireStore.collection('posts').add({
-        'uid': post.uid,
-        'content': post.content,
-        'imageUrl': post.imageUrl,
-      });
-
+      post.imageUrl = image;
+      await postRef.set(post.toJson());
       onDone();
     } on FirebaseException catch (e) {
       onError('Firebase Firestore Error: ${e.message}');
@@ -42,13 +38,11 @@ class PostService {
   }) async {
     try {
       String imageUrl = '';
-      if (pickedFile != null) {
-        final ref = FirebaseInstance.firebaseStorage
-            .ref()
-            .child('post_images/$postId.jpg');
-        await ref.putFile(pickedFile);
-        imageUrl = await ref.getDownloadURL();
-      }
+      final ref = FirebaseInstance.firebaseStorage
+          .ref()
+          .child('post_images/$postId.jpg');
+      await ref.putFile(pickedFile);
+      imageUrl = await ref.getDownloadURL();
       return imageUrl;
     } on FirebaseException catch (e) {
       return throw e;
@@ -71,7 +65,6 @@ class PostService {
         throw Exception('User not found');
       }
     } on FirebaseException catch (e) {
-      print('Firebase Firestore Error: $e');
       throw Exception('Error fetching user data');
     }
   }

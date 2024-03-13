@@ -89,12 +89,13 @@ class PostCardWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              if (post.imageUrl != null && post.imageUrl!.isNotEmpty)
-                Image.network(
-                  post.imageUrl!,
-                  height: 120,
-                  width: 100,
-                ),
+              // Image.network(post.imageUrl!),
+              // if (post.imageUrl != null && post.imageUrl!.isNotEmpty)
+              Image.network(
+                post.imageUrl!,
+                height: 120,
+                width: 100,
+              ),
               const IconsWidget()
             ],
           ),
