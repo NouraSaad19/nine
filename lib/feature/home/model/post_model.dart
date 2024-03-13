@@ -6,12 +6,8 @@ class PostModel {
   String content;
   String? imageUrl;
 
-  PostModel({
-    this.postId,
-    required this.uid,
-    required this.content,
-    this.imageUrl,
-  });
+  PostModel(
+      {this.postId, required this.uid, required this.content, this.imageUrl});
 
   factory PostModel.fromSnapshot(DocumentSnapshot snapshot) {
     Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;

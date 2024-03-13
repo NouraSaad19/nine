@@ -52,14 +52,15 @@ class PostService {
   Future<UserModel> getUserData(String userId) async {
     try {
       DocumentSnapshot userSnapshot = await FirebaseInstance.fireStore
-          .collection('users')
+          .collection('posts')
           .doc(userId)
           .get();
 
       if (userSnapshot.exists) {
         return UserModel(
           displayName: userSnapshot['displayName'],
-          email: userSnapshot['email'],
+        //  email: userSnapshot['email'],
+          photoURL: userSnapshot['']
         );
       } else {
         throw Exception('User not found');

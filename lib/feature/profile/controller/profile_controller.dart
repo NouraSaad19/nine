@@ -51,9 +51,6 @@ class ProfileController extends GetxController {
       onDone: () async {
 
         await getUserInfo();
-        //nameController.text = userName;
-        // print('update username ');
-        // print('nameController.text ${nameController.text}');
         update();
         Get.offNamed(Routes.profileScreen);
       },

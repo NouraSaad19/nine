@@ -17,6 +17,9 @@ class UserModel {
     return UserModel(
       id: doc.id,
       email: doc.data().toString().contains('email') ? doc['email'] : "",
+      //test
+      displayName: doc['displayName'],
+      photoURL: doc['photoURL'],
     );
   }
 

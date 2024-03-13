@@ -10,9 +10,6 @@ import 'footer_widget.dart';
 import 'header_widget.dart';
 
 class WritePostWidget extends StatelessWidget {
-  final ProfileController profileController = Get.find<ProfileController>();
-  final PostController postController = Get.find<PostController>();
-
   WritePostWidget({super.key});
 
   @override
@@ -34,7 +31,7 @@ class WritePostWidget extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  HeaderWritePostWidget(),
+                  const HeaderWritePostWidget(),
                   const SizedBox(
                     height: 30,
                   ),
@@ -65,8 +62,7 @@ class WritePostWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          FirebaseAuth.instance.currentUser?.displayName ??
-                              'Default Name',
+                          FirebaseAuth.instance.currentUser?.displayName ?? '',
                           style: textTheme.labelMedium,
                         ),
                       ],
