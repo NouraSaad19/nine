@@ -5,10 +5,17 @@ import 'package:get_storage/get_storage.dart';
 import '../model/post_model.dart';
 import '../service/post_service.dart';
 
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import '../model/post_model.dart';
+import '../service/post_service.dart';
+
 class PostController extends GetxController {
   final TextEditingController postTextEditingController =
       TextEditingController();
-  final PostService postService = PostService();
+  final PostService homeService = PostService();
   final GetStorage authStorage = GetStorage();
 
   List<PostModel> posts = [];
@@ -22,28 +29,24 @@ class PostController extends GetxController {
 
   Future<void> fetchData() async {
     posts.clear();
-    posts = await postService.getPosts();
+    posts = await homeService.getPosts();
     update();
   }
 
   Future<void> addPost(PostModel post, {required File? pickedFile}) async {
     try {
-      await postService.addPost(
+      await homeService.addPost(
         post: post,
         pickedFile: pickedFile!,
         onDone: () {
-          print(" hello from controller add post $post ");
-          print(" hello from controller add post ");
           fetchData();
         },
         onError: (e) {
-          print(" hello from controller error ");
           isLoading = false;
           update();
         },
       );
     } catch (e) {
-      print(" hello from controller catch $e");
       isLoading = false;
       update();
     }
@@ -53,4 +56,3 @@ class PostController extends GetxController {
     postTextEditingController.clear();
   }
 }
-
