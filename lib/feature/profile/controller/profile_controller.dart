@@ -49,7 +49,6 @@ class ProfileController extends GetxController {
         Get.snackbar('something went wrong', e.toString());
       },
       onDone: () async {
-
         await getUserInfo();
         update();
         Get.offNamed(Routes.profileScreen);

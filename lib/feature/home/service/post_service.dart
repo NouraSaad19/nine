@@ -24,8 +24,10 @@ class PostService {
         pickedFile: pickedFile,
         postId: post.postId,
       );
+      print(" add post from service ");
       post.imageUrl = image;
       await postRef.set(post.toJson());
+      print(" add post from service ");
       onDone();
     } on FirebaseException catch (e) {
       onError('Firebase Firestore Error: ${e.message}');
@@ -70,3 +72,4 @@ class PostService {
     }
   }
 }
+

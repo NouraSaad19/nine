@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/feature/profile/controller/profile_controller.dart';
 import 'package:get/get.dart';
+import '../../../../core/constant/keys.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../profile/controller/profile_controller.dart';
+import '../../../profile/widget/icon_widget.dart';
 import '../../controller/post_controller.dart';
+import '../../model/post_model.dart';
 
-class HeaderWritePostWidget extends StatelessWidget {
-  const HeaderWritePostWidget({super.key});
+class FooterWritePostWidget extends StatelessWidget {
+  const FooterWritePostWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +21,9 @@ class HeaderWritePostWidget extends StatelessWidget {
         return GetBuilder<ProfileController>(
           builder: (profileController) {
             return Padding(
-              padding: const EdgeInsets.all(18.0),
+              padding: const EdgeInsets.all(20.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     width: 36,
@@ -38,13 +44,13 @@ class HeaderWritePostWidget extends StatelessWidget {
                       ),
                       shadows: [
                         BoxShadow(
-                          color: AppColor.logoGreyColor,
+                          color: (AppColor.logoGreyColor),
                           blurRadius: 20,
                           offset: const Offset(6, 6),
                           spreadRadius: 0,
                         ),
                         BoxShadow(
-                          color: AppColor.logoGreyColor,
+                          color: (AppColor.logoGreyColor),
                           blurRadius: 20,
                           offset: const Offset(-6, -6),
                           spreadRadius: 0,
@@ -53,13 +59,11 @@ class HeaderWritePostWidget extends StatelessWidget {
                     ),
                     child: IconButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () {
-                        postController.clearController();
-                        profileController.clearPickedFile();
-                        Get.back();
+                      onPressed: () async {
+                        await profileController.pickImage();
                       },
                       icon: Icon(
-                        Icons.close,
+                        Icons.image_outlined,
                         color: AppColor.tiffanyColor,
                         size: 24.0,
                       ),
@@ -67,16 +71,37 @@ class HeaderWritePostWidget extends StatelessWidget {
                       highlightColor: AppColor.whiteColor,
                     ),
                   ),
-                  const SizedBox(
-                    width: 70,
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(100, 35),
+                    ),
+                    onPressed: () {
+                      final String postText = postController.postTextEditingController.text;
+                      print("${postController.postTextEditingController.text}");
+                      if (postText.isNotEmpty) {
+                        String? imagePath =
+                            profileController.pickedFileApp?.path;
+                        postController.addPost(
+                          PostModel(
+                            uid: postController.authStorage.read(Keys.authKey),
+                            content: postText,
+                            imageUrl: imagePath,
+                          ),
+                          pickedFile: profileController.pickedFileApp,
+                        );
+                        print("${postText} postText");
+                        postController.clearController();
+                        profileController.clearPickedFile();
+                        Get.back();
+                      }
+                    },
+                    child: Text('مشاركة', style: textTheme.displayMedium),
                   ),
-                  Text(
-                    'شاركنا سواليفك ',
-                    textAlign: TextAlign.center,
-                    style: textTheme.headlineLarge,
-                  ),
+
                 ],
               ),
+
+
             );
           },
         );
