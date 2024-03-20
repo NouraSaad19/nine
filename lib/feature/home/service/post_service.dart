@@ -40,11 +40,15 @@ class PostService {
   }) async {
     try {
       String imageUrl = '';
-      final ref = FirebaseInstance.firebaseStorage
-          .ref()
-          .child('post_images/$postId.jpg');
-      await ref.putFile(pickedFile);
-      imageUrl = await ref.getDownloadURL();
+
+      if (pickedFile != null) {
+        final ref = FirebaseInstance.firebaseStorage
+            .ref()
+            .child('post_images/$postId.jpg');
+        await ref.putFile(pickedFile);
+        imageUrl = await ref.getDownloadURL();
+      }
+
       return imageUrl;
     } on FirebaseException catch (e) {
       return throw e;
@@ -60,10 +64,9 @@ class PostService {
 
       if (userSnapshot.exists) {
         return UserModel(
-          displayName: userSnapshot['displayName'],
-        //  email: userSnapshot['email'],
-          photoURL: userSnapshot['']
-        );
+            displayName: userSnapshot['displayName'],
+            //  email: userSnapshot['email'],
+            photoURL: userSnapshot['']);
       } else {
         throw Exception('User not found');
       }
@@ -72,4 +75,3 @@ class PostService {
     }
   }
 }
-

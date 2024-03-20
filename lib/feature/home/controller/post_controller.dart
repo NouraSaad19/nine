@@ -9,6 +9,7 @@ class PostController extends GetxController {
   final TextEditingController postTextEditingController =
       TextEditingController();
   final PostService postService = PostService();
+
   final GetStorage authStorage = GetStorage();
 
   List<PostModel> posts = [];
@@ -28,6 +29,25 @@ class PostController extends GetxController {
 
   Future<void> addPost(PostModel post, {required File? pickedFile}) async {
     try {
+      if (pickedFile != null) {
+        isLoading = true;
+        update();
+
+        String? imageUrl = await postService.uploadImagePost(
+          pickedFile: pickedFile,
+          postId: post.uid,
+        );
+        print("pickedFile $pickedFile");
+
+        if (imageUrl != null) {
+          // post.imageUrl = imageUrl;
+          print(imageUrl);
+          print(post.imageUrl);
+        } else {
+          print(" null ");
+        }
+      }
+
       await postService.addPost(
         post: post,
         pickedFile: pickedFile!,
@@ -53,4 +73,3 @@ class PostController extends GetxController {
     postTextEditingController.clear();
   }
 }
-
