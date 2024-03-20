@@ -1,13 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/core/constant/app_image.dart';
-import 'package:flutter_template/feature/home/widget/post_list_widget.dart';
-import 'package:flutter_template/feature/home/widget/write_widgets/write_post_widget.dart';
 import 'package:get/get.dart';
 import '../../../common/widget/logo_home_widget.dart';
 import '../../../core/route/route.dart';
 import '../../profile/controller/profile_controller.dart';
 import '../controller/post_controller.dart';
+import '../widget/post_widgets/post_list_widget.dart';
+import '../widget/post_widgets/write_post_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -60,7 +59,6 @@ class HomeScreen extends StatelessWidget {
         },
         child: const Icon(Icons.post_add),
       ),
-
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Center(
@@ -86,7 +84,6 @@ class HomeScreen extends StatelessWidget {
           }),
         ),
       ),
-      //   ),
     );
   }
 }

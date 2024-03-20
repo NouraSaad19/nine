@@ -10,6 +10,8 @@ import 'footer_widget.dart';
 import 'header_widget.dart';
 
 class WritePostWidget extends StatelessWidget {
+  final ProfileController profileController =
+      Get.put(ProfileController()); //test
   WritePostWidget({super.key});
 
   @override
@@ -31,7 +33,9 @@ class WritePostWidget extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  const HeaderWritePostWidget(),
+                  const HeaderWritePostWidget(
+                    header: 'شاركنا سواليفك ',
+                  ),
                   const SizedBox(
                     height: 30,
                   ),
@@ -53,15 +57,13 @@ class WritePostWidget extends StatelessWidget {
                                   ? AssetImage(AppImage.profilePhotoImage)
                                       as ImageProvider
                                   : NetworkImage(
-                                      FirebaseAuth
-                                              .instance.currentUser?.photoURL ??
-                                          '',
-                                    ),
+                                      profileController.profilePhoto!),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
                         Text(
+                          // profileController.getUserInfoByUid(uid),
                           FirebaseAuth.instance.currentUser?.displayName ?? '',
                           style: textTheme.labelMedium,
                         ),

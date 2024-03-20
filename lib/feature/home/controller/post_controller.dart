@@ -8,7 +8,7 @@ import '../service/post_service.dart';
 class PostController extends GetxController {
   final TextEditingController postTextEditingController =
       TextEditingController();
-  final PostService homeService = PostService();
+  final PostService postService = PostService();
   final GetStorage authStorage = GetStorage();
 
   List<PostModel> posts = [];
@@ -22,24 +22,28 @@ class PostController extends GetxController {
 
   Future<void> fetchData() async {
     posts.clear();
-    posts = await homeService.getPosts();
+    posts = await postService.getPosts();
     update();
   }
 
   Future<void> addPost(PostModel post, {required File? pickedFile}) async {
     try {
-      await homeService.addPost(
+      await postService.addPost(
         post: post,
         pickedFile: pickedFile!,
         onDone: () {
+          print(" hello from controller add post $post ");
+          print(" hello from controller add post ");
           fetchData();
         },
         onError: (e) {
+          print(" hello from controller error ");
           isLoading = false;
           update();
         },
       );
     } catch (e) {
+      print(" hello from controller catch $e");
       isLoading = false;
       update();
     }
@@ -49,3 +53,4 @@ class PostController extends GetxController {
     postTextEditingController.clear();
   }
 }
+
